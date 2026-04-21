@@ -10,198 +10,228 @@
   <meta property="og:type" content="website">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;1,9..144,400&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,400;1,9..144,700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- NAV -->
-<nav class="nav">
-  <a href="index.html" class="nav-brand">Jutro s kmetije<span>Svobodna reja · Slovenija</span></a>
-  <input type="checkbox" id="nav-toggle" class="nav-toggle">
-  <label for="nav-toggle" class="nav-hamburger" aria-label="Meni">
-    <span></span><span></span><span></span>
-  </label>
-  <ul class="nav-links">
-    <li><a href="index.html" class="active">Domov</a></li>
-    <li><a href="recepti.html">Recepti</a></li>
-    <li><a href="shop.html">Trgovina</a></li>
-    <li><a href="about.html">O nas</a></li>
-    <li><a href="shop.html" class="cart-badge">Košarica <span class="badge-count" id="cart-count">0</span></a></li>
-    <li><a href="preorder.html" class="btn-nav">Naroči</a></li>
-  </ul>
-</nav>
-
-<!-- PRE-LAUNCH URGENCY STRIP -->
-<div style="background:var(--yellow);padding:.75rem 1.5rem;text-align:center;">
-  <p style="font-size:.9rem;font-weight:700;color:var(--green-dk);margin:0;">
-    🐔 &nbsp;Prvim 50 naročnikom: brezplačni obrok na food trucku + 10% popust na prvo dobavo
-  </p>
+<!-- URGENCY STRIP -->
+<div class="urgency-strip">
+  <p>Prvim 50 naročnikom: brezplačni obrok na food trucku + 10% popust na prvo dobavo</p>
 </div>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="container hero-inner">
-    <p class="hero-label">🌱 Prihajamo kmalu · Ljubljana</p>
-    <h1>Pridruži se nam prvi.</h1>
-    <p class="hero-tagline">Sveža jajca, piščanci, ribe in zelenjava. Direktno s kmetije k tebi.</p>
-    <p style="color:rgba(255,255,255,.7);max-width:52ch;margin-bottom:2.5rem;font-size:1.05rem;">
+<!-- HERO — full-viewport, Z-pattern -->
+<header class="hero">
+
+  <nav class="hero-nav" aria-label="Glavna navigacija">
+    <div class="hero-brand">Jutro s kmetije</div>
+    <ul class="hero-nav-links" role="list">
+      <li><a href="#products">Ponudba</a></li>
+      <li><a href="#how-it-works">Kako deluje</a></li>
+      <li><a href="#testimonials">Mnenja</a></li>
+      <li><a href="recepti.html">Recepti</a></li>
+      <li><a href="shop.html">Trgovina</a></li>
+      <li><a href="about.html">O nas</a></li>
+    </ul>
+  </nav>
+
+  <div class="hero-badge" aria-label="Lokacija in reja">Prosto reje · Ljubljana</div>
+
+  <div class="hero-body">
+    <p class="hero-label">Prihajamo kmalu · Ljubljana</p>
+
+    <h1 class="hero-headline">
+      Pridruži se<br>nam prvi<span class="dot">.</span>
+    </h1>
+
+    <p class="hero-subline">Sveža jajca, piščanci, ribe in zelenjava. Direktno s kmetije k tebi.</p>
+
+    <p style="color:rgba(255,255,255,.6);max-width:52ch;margin-bottom:2.5rem;font-size:1.05rem;line-height:1.7;">
       Gradimo kmetijo. Preden odpremo dostavo, zbiramo prve naročnike — tiste, ki bodo dobili prednost pri terminih, posebno ceno in brezplačni degustacijski obrok.
     </p>
+
     <div class="hero-actions">
-      <a href="preorder.html" class="btn btn-primary" style="background:var(--yellow);color:var(--green-dk);font-size:1.1rem;padding:1rem 2rem;">Pridobi zgodnji dostop</a>
-      <a href="about.html" class="btn btn-outline">Spoznaj kmetijo</a>
+      <a href="preorder.html" class="btn btn-yellow">Pridobi zgodnji dostop</a>
+      <a href="about.html" class="btn btn-ghost">Spoznaj kmetijo</a>
     </div>
-    <p style="color:rgba(255,255,255,.55);font-size:.85rem;margin-top:1.25rem;">
+
+    <p style="color:rgba(255,255,255,.4);font-size:.85rem;margin-top:1.25rem;">
       Brezplačni degustacijski obrok na food trucku za prve naročnike.
     </p>
   </div>
+
+  <div class="hero-scroll" aria-hidden="true">
+    <div class="hero-scroll-line"></div>
+    <span class="hero-scroll-label">Pomakniti navzdol</span>
+  </div>
+
+</header>
+
+<!-- MANIFESTO -->
+<section class="manifesto" aria-label="Naše načelo">
+  <p class="manifesto-line">
+    "Pobrano zjutraj. Pri tebi do kosila."
+  </p>
 </section>
 
 <!-- PRODUCTS -->
-<section class="section bg-offwhite">
+<section class="section" style="background:var(--off-white);" id="products">
   <div class="container">
-    <p class="section-label text-center">Naša ponudba</p>
-    <h2 class="section-title text-center">Kar vzgojimo, vam dostavimo</h2>
-    <p class="section-sub text-center">Vse pridelano na kmetiji — brez vmesnih rok, brez hladilnih verig.</p>
+
+    <header class="products-header">
+      <span class="eyebrow">Naša ponudba</span>
+      <h2 class="products-title">Kar vzgojimo, vam dostavimo</h2>
+      <p class="products-subtitle">Vse pridelano na kmetiji — brez vmesnih rok, brez hladilnih verig.</p>
+    </header>
+
     <div class="cards-grid">
+
       <!-- Card 1 -->
       <div class="card">
-        <div class="photo-placeholder">🥚</div>
+        <div class="product-img" style="font-size:3rem;background:var(--green-dk);">🥚</div>
         <div class="card-body">
           <span class="card-tag">Bestseller</span>
           <h3 class="card-title">Sveža jajca</h3>
           <p class="card-desc">Kokoši na paši, brez kemikalij. Rumenjak globoko oranžen — barva prostosti in dobre hrane.</p>
-          <div class="card-price">€7.50 <small>/ 15 kom</small></div>
-          <a href="shop.html" class="btn btn-green" style="display:block;text-align:center;">Izberi paket</a>
+          <div class="product-footer">
+            <div class="card-price">€7.50 <small>/ 15 kom</small></div>
+            <a href="shop.html" class="product-cta">Izberi paket →</a>
+          </div>
         </div>
       </div>
+
       <!-- Card 2 -->
       <div class="card">
-        <div class="photo-placeholder">🐔</div>
+        <div class="product-img" style="font-size:3rem;background:#1e3a1e;">🐔</div>
         <div class="card-body">
           <span class="card-tag">Po naročilu</span>
           <h3 class="card-title">Piščančje meso</h3>
           <p class="card-desc">Vzgojeno na prostem, zakol po naročilu. Celo truplo 1.5–2kg, sveže pakirano isti dan.</p>
-          <div class="card-price">€12 <small>/ kg</small></div>
-          <a href="preorder.html" class="btn btn-green" style="display:block;text-align:center;">Prednaroči</a>
+          <div class="product-footer">
+            <div class="card-price">€12 <small>/ kg</small></div>
+            <a href="preorder.html" class="product-cta">Prednaroči →</a>
+          </div>
         </div>
       </div>
+
       <!-- Card 3 -->
       <div class="card">
-        <div class="photo-placeholder">🐟</div>
+        <div class="product-img" style="font-size:3rem;background:#1a3530;">🐟</div>
         <div class="card-body">
           <span class="card-tag">Akvaponika</span>
           <h3 class="card-title">Sveže ribe</h3>
           <p class="card-desc">Postrv iz naše akvaponike. 400–600g, vzgojeno brez antibiotikov v zaprtem vodnem sistemu.</p>
-          <div class="card-price">€8 <small>/ kg</small></div>
-          <a href="preorder.html" class="btn btn-green" style="display:block;text-align:center;">Prednaroči</a>
+          <div class="product-footer">
+            <div class="card-price">€8 <small>/ kg</small></div>
+            <a href="preorder.html" class="product-cta">Prednaroči →</a>
+          </div>
         </div>
       </div>
+
       <!-- Card 4 -->
       <div class="card">
-        <div class="photo-placeholder">🌿</div>
+        <div class="product-img" style="font-size:3rem;background:#1e4a22;">🌿</div>
         <div class="card-body">
           <span class="card-tag">Sezonsko</span>
           <h3 class="card-title">Zelenjava</h3>
           <p class="card-desc">Sezonska, natrgana zjutraj pred dostavo. Solate, paradižnik, bučke, korenček — vse ekološko.</p>
-          <div class="card-price">€18 <small>/ teden</small></div>
-          <a href="shop.html" class="btn btn-green" style="display:block;text-align:center;">Naroči dostavo</a>
+          <div class="product-footer">
+            <div class="card-price">€18 <small>/ teden</small></div>
+            <a href="shop.html" class="product-cta">Naroči dostavo →</a>
+          </div>
         </div>
       </div>
+
       <!-- Card 5 -->
       <div class="card">
-        <div class="photo-placeholder">🌱</div>
+        <div class="product-img" style="font-size:3rem;background:#243d1a;">🌱</div>
         <div class="card-body">
           <span class="card-tag">Ekološko</span>
           <h3 class="card-title">Domače gnojilo</h3>
           <p class="card-desc">BSF kompost + kokošji iztrebki, certificirano organsko. 5L vedro za vrt ali balkon.</p>
-          <div class="card-price">€9 <small>/ vedro</small></div>
-          <a href="shop.html" class="btn btn-green" style="display:block;text-align:center;">Dodaj k naročilu</a>
+          <div class="product-footer">
+            <div class="card-price">€9 <small>/ vedro</small></div>
+            <a href="shop.html" class="product-cta">Dodaj k naročilu →</a>
+          </div>
         </div>
       </div>
+
       <!-- Card 6 -->
       <div class="card">
-        <div class="photo-placeholder">🍳</div>
+        <div class="product-img" style="font-size:3rem;background:#2d3a1a;">🍳</div>
         <div class="card-body">
           <span class="card-tag">Za prve naročnike</span>
           <h3 class="card-title">Recepti &amp; degustacija</h3>
           <p class="card-desc">Food truck izkušnja za prve naročnike. Jajca Benedikt, piščanec na žaru, zeliščna omletka.</p>
-          <div class="card-price" style="font-size:1.1rem;color:var(--green);">Brezplačno</div>
-          <a href="preorder.html" class="btn btn-green" style="display:block;text-align:center;">Rezerviraj mesto</a>
+          <div class="product-footer">
+            <div class="card-price" style="color:var(--green);">Brezplačno</div>
+            <a href="preorder.html" class="product-cta">Rezerviraj →</a>
+          </div>
         </div>
       </div>
+
     </div>
   </div>
 </section>
 
-<!-- FOOD TRUCK SECTION -->
-<section style="background:var(--yellow);padding:4rem 1.5rem;text-align:center;">
+<!-- FOOD TRUCK -->
+<section class="food-truck-section">
   <div class="container" style="max-width:720px;">
-    <p style="font-size:.8rem;text-transform:uppercase;letter-spacing:.14em;font-weight:700;color:var(--green-dk);margin-bottom:.75rem;">Za prve naročnike</p>
-    <h2 style="font-family:'Fraunces',serif;font-size:clamp(1.8rem,4vw,2.6rem);color:var(--green-dk);margin-bottom:1.25rem;line-height:1.15;">Preizkusi preden naročiš.</h2>
-    <p style="color:var(--green-dk);font-size:1.05rem;margin-bottom:2rem;max-width:58ch;margin-left:auto;margin-right:auto;">
-      Organiziramo brezplačno degustacijo na food trucku za prve 50 naročnikov. Jajca Benedikt, piščanec na žaru, zeliščna omletka — vse s kmetije.
-    </p>
-    <a href="preorder.html" class="btn" style="background:var(--green-dk);color:var(--white);padding:.9rem 2rem;font-weight:700;font-size:1rem;border-radius:10px;display:inline-block;">Rezerviraj mesto</a>
-    <p style="font-size:.85rem;color:var(--green-dk);opacity:.7;margin-top:1rem;">
-      Ljubljana center &nbsp;·&nbsp; datum TBD &nbsp;·&nbsp; brezplačno za zgodnje naročnike
-    </p>
+    <p class="section-kicker">Za prve naročnike</p>
+    <h2>Preizkusi preden naročiš.</h2>
+    <p>Organiziramo brezplačno degustacijo na food trucku za prve 50 naročnikov. Jajca Benedikt, piščanec na žaru, zeliščna omletka — vse s kmetije.</p>
+    <a href="preorder.html" class="btn btn-dark">Rezerviraj mesto</a>
+    <p class="food-truck-meta">Ljubljana center &nbsp;·&nbsp; datum TBD &nbsp;·&nbsp; brezplačno za zgodnje naročnike</p>
   </div>
 </section>
 
-<!-- B2B RESTAURANTS SECTION -->
-<section style="background:var(--green-dk);padding:4rem 1.5rem;">
-  <div class="container" style="max-width:900px;">
-    <div style="display:grid;grid-template-columns:1fr auto;gap:3rem;align-items:center;">
-      <div>
-        <p style="font-size:.8rem;text-transform:uppercase;letter-spacing:.14em;font-weight:700;color:var(--yellow);margin-bottom:.75rem;">Veleprodaja</p>
-        <h2 style="font-family:'Fraunces',serif;font-size:clamp(1.6rem,3.5vw,2.4rem);color:var(--white);margin-bottom:1.5rem;line-height:1.2;">Za restavracije in hotelsko industrijo</h2>
-        <div style="display:flex;flex-direction:column;gap:.9rem;margin-bottom:2rem;">
-          <div style="display:flex;align-items:center;gap:.75rem;">
-            <span style="background:var(--yellow);color:var(--green-dk);width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;flex-shrink:0;">✓</span>
-            <span style="color:rgba(255,255,255,.9);font-size:.95rem;">Tedenski dobavni termini — prilagodljivi glede na vašo kuhinjo</span>
-          </div>
-          <div style="display:flex;align-items:center;gap:.75rem;">
-            <span style="background:var(--yellow);color:var(--green-dk);width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;flex-shrink:0;">✓</span>
-            <span style="color:rgba(255,255,255,.9);font-size:.95rem;">Certificirano ekološko — dokumentacija na zahtevo</span>
-          </div>
-          <div style="display:flex;align-items:center;gap:.75rem;">
-            <span style="background:var(--yellow);color:var(--green-dk);width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;flex-shrink:0;">✓</span>
-            <span style="color:rgba(255,255,255,.9);font-size:.95rem;">Prilagodljive količine — od manjšega bistroja do hotelske kuhinje</span>
-          </div>
+<!-- B2B RESTAURANTS -->
+<section class="b2b-section">
+  <div class="b2b-inner">
+    <div>
+      <p class="b2b-kicker">Veleprodaja</p>
+      <h2>Za restavracije in hotelsko industrijo</h2>
+      <div class="b2b-checks">
+        <div class="b2b-check">
+          <span class="b2b-check-mark">✓</span>
+          <span>Tedenski dobavni termini — prilagodljivi glede na vašo kuhinjo</span>
         </div>
-        <a href="mailto:kmetija@jutroskmetije.si" class="btn" style="background:var(--yellow);color:var(--green-dk);padding:.85rem 1.75rem;font-weight:700;font-size:.95rem;border-radius:10px;display:inline-block;">Pišite nam</a>
+        <div class="b2b-check">
+          <span class="b2b-check-mark">✓</span>
+          <span>Certificirano ekološko — dokumentacija na zahtevo</span>
+        </div>
+        <div class="b2b-check">
+          <span class="b2b-check-mark">✓</span>
+          <span>Prilagodljive količine — od manjšega bistroja do hotelske kuhinje</span>
+        </div>
       </div>
-      <div style="text-align:center;">
-        <div style="font-size:5rem;line-height:1;">🍽️</div>
-        <p style="color:rgba(255,255,255,.5);font-size:.8rem;margin-top:.5rem;">Restavracije &amp; hoteli</p>
-      </div>
+      <a href="mailto:kmetija@jutroskmetije.si" class="btn btn-yellow">Pišite nam</a>
+    </div>
+    <div class="b2b-icon">
+      <div class="icon-large">🍽️</div>
+      <p>Restavracije &amp; hoteli</p>
     </div>
   </div>
 </section>
 
 <!-- HOW IT WORKS -->
-<section class="section bg-white">
+<section class="section bg-white" id="how-it-works">
   <div class="container">
-    <p class="section-label text-center">Kako deluje</p>
-    <h2 class="section-title text-center">Trije koraki do sveže dostave</h2>
-    <div class="steps">
+    <span class="eyebrow">Kako deluje</span>
+    <h2 class="section-title">Trije koraki do sveže dostave</h2>
+    <div class="steps" style="margin-top:var(--sp-6);">
       <div class="step">
         <div class="step-num">1</div>
-        <div class="step-icon">📋</div>
         <div class="step-title">Naroči</div>
         <p style="color:var(--gray);font-size:.9rem;">Izberi izdelke, dan dostave in pusti kontaktne podatke. Brez kompleksnih računov ali naročnin.</p>
       </div>
       <div class="step">
         <div class="step-num">2</div>
-        <div class="step-icon">📦</div>
         <div class="step-title">Pakujemo</div>
         <p style="color:var(--gray);font-size:.9rem;">Zjutraj poberemo jajca, porežemo zelišča in spakiramo škatlo — vse isti dan.</p>
       </div>
       <div class="step">
         <div class="step-num">3</div>
-        <div class="step-icon">🚐</div>
         <div class="step-title">Dostavimo</div>
         <p style="color:var(--gray);font-size:.9rem;">Dostava na vaš naslov do 13:00. Plačilo ob dostavi — ni predplačil.</p>
       </div>
@@ -210,10 +240,10 @@
 </section>
 
 <!-- WHY US -->
-<section class="section bg-offwhite">
+<section class="why-us-section">
   <div class="container two-col">
     <div>
-      <p class="section-label">Zakaj Jutro s kmetije</p>
+      <span class="eyebrow">Zakaj Jutro s kmetije</span>
       <h2 class="section-title">Jajca so toliko boljša, ko veste, od kod prihajajo</h2>
       <p style="color:var(--gray);margin-bottom:1.75rem;">Supermarketska jajca so stara 3–4 tedne. Naša so pobrana zjutraj in pri vas isti dan. Kokoši se pasejo na 15.000m² brez kemikalij, krmljene pa so z larvami iz naše BSF farme.</p>
       <div class="values">
@@ -230,47 +260,53 @@
   </div>
 </section>
 
-<!-- TESTIMONIALS -->
-<section class="section bg-white">
+<!-- TESTIMONIALS — type on white, no boxes -->
+<section class="testimonials" id="testimonials" aria-label="Mnenja strank">
   <div class="container">
-    <p class="section-label text-center">Kar pravijo stranke</p>
-    <h2 class="section-title text-center">Resnični naročniki</h2>
-    <div class="testimonials-grid" style="margin-top:2.5rem;">
-      <div class="testimonial">
-        <blockquote>"Rumenjak je res oranžen — nič takega nisem videla v supermarketu. Otroci so navdušeni."</blockquote>
-        <cite>— Maja K., Ljubljana</cite>
-      </div>
-      <div class="testimonial">
-        <blockquote>"Naročamo vsak teden. Zelenjavna škatla je vedno polna presenečenj, vse je sveže in polno okusa."</blockquote>
-        <cite>— Tomaž P., Domžale</cite>
-      </div>
-      <div class="testimonial">
-        <blockquote>"Kot kuhar cenim kakovost. Ta jajca se vidijo na krožniku — barva, konsistenca, okus. Priporočam."</blockquote>
-        <cite>— Chef Rok, restavracija Izvir</cite>
-      </div>
+    <span class="eyebrow text-center" style="display:block;text-align:center;">Kar pravijo stranke</span>
+    <h2 class="section-title text-center" style="margin-bottom:var(--sp-7);">Resnični naročniki</h2>
+    <div class="testimonials-inner">
+
+      <blockquote>
+        <span class="quote-mark" aria-hidden="true">"</span>
+        <p class="quote-text">Rumenjak je res oranžen — nič takega nisem videla v supermarketu. Otroci so navdušeni.</p>
+        <cite class="quote-attr">Maja K. &mdash; Ljubljana</cite>
+      </blockquote>
+
+      <blockquote>
+        <span class="quote-mark" aria-hidden="true">"</span>
+        <p class="quote-text">Naročamo vsak teden. Zelenjavna škatla je vedno polna presenečenj, vse je sveže in polno okusa.</p>
+        <cite class="quote-attr">Tomaž P. &mdash; Domžale</cite>
+      </blockquote>
+
     </div>
+
+    <blockquote style="margin-top:var(--sp-7);border-top:1px solid rgba(26,61,31,.07);padding-top:var(--sp-7);max-width:600px;margin-inline:auto;text-align:center;">
+      <span class="quote-mark" aria-hidden="true" style="display:block;text-align:center;">"</span>
+      <p class="quote-text" style="max-width:100%;text-align:center;margin-inline:auto;">Kot kuhar cenim kakovost. Ta jajca se vidijo na krožniku — barva, konsistenca, okus. Priporočam.</p>
+      <cite class="quote-attr">Chef Rok &mdash; restavracija Izvir</cite>
+    </blockquote>
   </div>
 </section>
 
 <!-- CTA BANNER -->
-<div class="cta-banner">
+<section class="cta-banner">
   <div class="container">
     <h2>Pridruži se nam prvi.</h2>
     <p>Prvih 50 naročnikov dobi brezplačni obrok na food trucku, 10% popust na prvo dobavo in prednostni dostavni termin.</p>
-    <a href="preorder.html" class="btn btn-primary">Pridobi zgodnji dostop →</a>
+    <a href="preorder.html" class="btn btn-yellow">Pridobi zgodnji dostop →</a>
   </div>
-</div>
+</section>
 
 <!-- FOOTER -->
 <footer class="footer">
   <div class="container">
     <div class="footer-grid">
       <div>
-        <div class="footer-brand">Jutro s kmetije</div>
-        <p style="font-size:.9rem;margin-bottom:1rem;">Svobodna reja. Dostavljeno k tebi.</p>
-        <p style="font-size:.85rem;">📍 Slovenija, dostava v okolici 30km</p>
-        <p style="font-size:.85rem;">📞 <a href="tel:+38641000000">041 000 000</a></p>
-        <p style="font-size:.85rem;">✉️ <a href="mailto:info@jutroszkmetije.si">info@jutroszkmetije.si</a></p>
+        <div class="footer-brand">Jutro s kmetije<span>Ljubljana, Slovenija</span></div>
+        <p style="font-size:.85rem;margin-top:.75rem;color:rgba(255,255,255,.45);">Svobodna reja. Dostavljeno k tebi.</p>
+        <p style="font-size:.85rem;margin-top:.5rem;"><a href="tel:+38641000000" style="color:rgba(255,255,255,.45);">041 000 000</a></p>
+        <p style="font-size:.85rem;"><a href="mailto:info@jutroszkmetije.si" style="color:rgba(255,255,255,.45);">info@jutroszkmetije.si</a></p>
       </div>
       <div>
         <h4>Strani</h4>
@@ -292,8 +328,8 @@
       </div>
       <div>
         <h4>Novice s kmetije</h4>
-        <p style="font-size:.85rem;margin-bottom:.75rem;">Vsak teden kratka novica: kaj raste, kaj smo se naučili, kdaj dostavljamo.</p>
-        <form class="newsletter-form" onsubmit="event.preventDefault();this.innerHTML='<p style=color:var(--yellow);font-size:.9rem;>Hvala! Javimo se. 🥚</p>'">
+        <p style="font-size:.85rem;margin-bottom:.75rem;color:rgba(255,255,255,.45);">Vsak teden kratka novica: kaj raste, kaj smo se naučili, kdaj dostavljamo.</p>
+        <form class="newsletter-form" onsubmit="event.preventDefault();this.innerHTML='<p style=color:var(--yellow);font-size:.9rem;>Hvala! Javimo se.</p>'">
           <input type="email" placeholder="vaš@email.si" required>
           <button type="submit">Pošlji</button>
         </form>
@@ -301,17 +337,17 @@
     </div>
     <div class="footer-bottom">
       <span>© 2026 Jutro s kmetije. Vse pravice pridržane.</span>
-      <span>Z ljubeznijo narejen v Sloveniji 🇸🇮</span>
+      <span>v1.2 · 2026-04-21</span>
     </div>
   </div>
 </footer>
 
 <script>
-  // Cart count from localStorage
   function updateCartBadge() {
     const cart = JSON.parse(localStorage.getItem('jsk_cart') || '[]');
     const total = cart.reduce((s, i) => s + i.qty, 0);
-    document.getElementById('cart-count').textContent = total;
+    const el = document.getElementById('cart-count');
+    if (el) el.textContent = total;
   }
   updateCartBadge();
 </script>
