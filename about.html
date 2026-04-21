@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>O nas — Jutro s kmetije</title>
+  <meta name="description" content="Spoznajte kmetijo, ki ji zaupamo naravi. Zgodba o svobodni reji, trajnostnem kmetijstvu in jajcih, ki so res sveža.">
+  <meta property="og:title" content="O nas — Jutro s kmetije">
+  <meta property="og:description" content="Spoznajte kmetijo, ki ji zaupamo naravi. Zgodba o svobodni reji in trajnostnem kmetijstvu.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;1,9..144,400&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .story-section { padding: 4rem 1.5rem; }
+    .story-section:nth-child(even) { background: var(--white); }
+    .story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; max-width: 1160px; margin: 0 auto; }
+    .story-grid.reversed { direction: rtl; }
+    .story-grid.reversed > * { direction: ltr; }
+    @media (max-width: 767px) { .story-grid { grid-template-columns: 1fr; gap: 2rem; } .story-grid.reversed { direction: ltr; } }
+    .story-num { font-family: 'Fraunces', serif; font-size: 4rem; color: var(--green); opacity: .25; line-height: 1; margin-bottom: -.5rem; }
+    .story-label { font-size: .8rem; text-transform: uppercase; letter-spacing: .14em; color: var(--green); font-weight: 700; }
+    .story-title { font-size: clamp(1.6rem, 3.5vw, 2.2rem); margin: .5rem 0 1rem; }
+    .story-text { color: var(--gray); line-height: 1.75; }
+    .story-text + .story-text { margin-top: .85rem; }
+
+    .stats-banner { background: linear-gradient(135deg, var(--green-dk), var(--green)); color: var(--white); padding: 4rem 1.5rem; }
+    .stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 2rem; max-width: 900px; margin: 0 auto; text-align: center; }
+    .stat-item .stat-num { font-family: 'Fraunces', serif; font-size: 3rem; color: var(--yellow); line-height: 1; display: block; }
+    .stat-item .stat-label { font-size: .9rem; color: rgba(255,255,255,.75); margin-top: .4rem; }
+
+    .values-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
+    .value-card { background: var(--white); border-radius: var(--radius); padding: 1.75rem; box-shadow: var(--shadow); border-top: 4px solid var(--green); }
+    .value-icon { font-size: 2rem; margin-bottom: .75rem; }
+    .value-title { font-weight: 700; font-size: 1.05rem; margin-bottom: .4rem; }
+    .value-desc { font-size: .88rem; color: var(--gray); }
+
+    .farmer-card { background: var(--white); border-radius: var(--radius); padding: 2rem; box-shadow: var(--shadow); display: flex; gap: 1.5rem; align-items: flex-start; }
+    @media (max-width: 600px) { .farmer-card { flex-direction: column; } }
+    .farmer-avatar { width: 100px; height: 100px; border-radius: 50%; flex-shrink: 0; background: linear-gradient(135deg, var(--green), var(--green-dk)); display: flex; align-items: center; justify-content: center; font-size: 2.5rem; }
+    .farmer-name { font-size: 1.2rem; font-weight: 700; margin-bottom: .25rem; }
+    .farmer-role { font-size: .85rem; color: var(--green); font-weight: 600; margin-bottom: .75rem; }
+    .farmer-bio { font-size: .9rem; color: var(--gray); line-height: 1.65; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="index.html" class="nav-brand">Jutro s kmetije<span>Svobodna reja · Slovenija</span></a>
+  <input type="checkbox" id="nav-toggle" class="nav-toggle">
+  <label for="nav-toggle" class="nav-hamburger" aria-label="Meni">
+    <span></span><span></span><span></span>
+  </label>
+  <ul class="nav-links">
+    <li><a href="index.html">Domov</a></li>
+    <li><a href="shop.html">Trgovina</a></li>
+    <li><a href="about.html" class="active">O nas</a></li>
+    <li><a href="shop.html" class="cart-badge">Košarica <span class="badge-count" id="cart-count">0</span></a></li>
+    <li><a href="preorder.html" class="btn-nav">Naroči</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" style="padding:6rem 1.5rem 5rem;">
+  <div class="container hero-inner">
+    <p class="hero-label" style="color:var(--yellow);">Naša zgodba</p>
+    <h1 style="color:var(--white);">Kmetija, ki ji<br><em style="color:var(--yellow);font-style:italic;">zaupamo naravi</em></h1>
+    <p class="hero-tagline">Ne prodajamo jajc. Prodajamo sistem: kmetija, kjer vsak del podpira drugega — od muhe do kokoši do vaše mize.</p>
+  </div>
+</section>
+
+<!-- STATS BANNER -->
+<div class="stats-banner">
+  <div class="stats-row">
+    <div class="stat-item">
+      <span class="stat-num">500</span>
+      <div class="stat-label">kokoši na prostem</div>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">15.000m²</span>
+      <div class="stat-label">pašnika in vrtov</div>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">0</span>
+      <div class="stat-label">kemikalij ali antibiotikov</div>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">3h</span>
+      <div class="stat-label">dela na dan — sistem dela sam</div>
+    </div>
+  </div>
+</div>
+
+<!-- STORY 1: Zakaj -->
+<section class="story-section bg-offwhite">
+  <div class="story-grid">
+    <div>
+      <div class="story-num">01</div>
+      <p class="story-label">Zakaj smo začeli</p>
+      <h2 class="story-title">Ker supermarketska jajca so stara 3 tedne</h2>
+      <p class="story-text">Preden smo začeli, smo preverili, koliko so stara jajca v supermarketu v trenutku, ko jih kupite. Povprečno 21–28 dni. Rok trajanja jim je 28 dni od datuma pakiranja, pakiranje pa je dan ali dva po nošenju.</p>
+      <p class="story-text">Naša jajca so pobrana zjutraj in pri vas do kosila istega dne. Ni hladilnih verig, ni embalažnih linij, ni vmesnih skladišč. Samo kokoš, jajce in vi.</p>
+      <p class="story-text">Poleg tega: kokoši v industrijskem sistemu ne vidijo sonca. Naše se pasejo zunaj vsak dan, krmljene z BSF larvami in travo. Rumenjak je globoko oranžen — to je barva zdravja, ne barvil.</p>
+    </div>
+    <div>
+      <div class="photo-placeholder tall">🐔</div>
+    </div>
+  </div>
+</section>
+
+<!-- STORY 2: Kako -->
+<section class="story-section bg-white">
+  <div class="story-grid reversed">
+    <div>
+      <div class="story-num">02</div>
+      <p class="story-label">Kako deluje naša kmetija</p>
+      <h2 class="story-title">Rotacijski pašnik, BSF larve, brez kemikalij</h2>
+      <p class="story-text"><strong>Rotacijski pašnik:</strong> 15.000m² razdeljeno na 8 sekcij. Kokoši rotiramo vsakih 10 dni — trava se obnovi, tla se regenerirajo, ni prekomerne paše. Kokoši imajo vedno svežo zeleno tavo, ne blato.</p>
+      <p class="story-text"><strong>BSF larve:</strong> Kokoši dobivajo BSF (Black Soldier Fly) larve kot naravni vir beljakovin. To je nadomestilo za industrijske pelete — larve vsebujejo 44% beljakovin in 35% maščob. Telo kokoši ve, kaj z njimi narediti.</p>
+      <p class="story-text"><strong>Zaprt sistem:</strong> Kuhinjski odpadki → BSF larve → kokoši → jajca + gnoj → kompost → vrt → vaša škatla. Zunanji vhodi: voda, sonce, naš čas.</p>
+      <p class="story-text"><strong>Brez kemikalij:</strong> Nobenih antibiotikov, nobenih rastnih hormonov, nobenih pesticidov na pašniku. Nič.</p>
+    </div>
+    <div>
+      <div class="photo-placeholder tall">🌿</div>
+    </div>
+  </div>
+</section>
+
+<!-- STORY 3: Kdo -->
+<section class="story-section bg-offwhite">
+  <div class="story-grid">
+    <div>
+      <div class="story-num">03</div>
+      <p class="story-label">Kdo stoji za kmetijo</p>
+      <h2 class="story-title">Jure, kmet z doktoratom iz biologije sistemov</h2>
+      <p class="story-text">Kmetija ni romantična ideja o pobegu v naravo. Je sistem, zasnovan na bioloških principih — zaprti nutrientni cikli, mutualizmi, minimalni zunanji vhodi.</p>
+      <p class="story-text">Začel sem z 10 kokošmi in enim kozarcem odpadkov. Tri leta kasneje: 500 kokoši, BSF sistem, akvaponika, biochar kompost in dostava 40+ gospodinjstev.</p>
+      <div class="farmer-card" style="margin-top:1.5rem;">
+        <div class="farmer-avatar">👨‍🌾</div>
+        <div>
+          <div class="farmer-name">Jure — kmet & začetnik</div>
+          <div class="farmer-role">Ustanovitelj, Jutro s kmetije</div>
+          <p class="farmer-bio">Diplomiran biolog, ki se je odločil, da bo teorijo uveljavil na 15.000m². Verjame, da je najboljše kmetijstvo tisto, ki se ne čuti kot delo — ker sistem dela sam.</p>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="photo-grid">
+        <div class="photo-placeholder square">🥚</div>
+        <div class="photo-placeholder square">🐔</div>
+        <div class="photo-placeholder square">🌱</div>
+        <div class="photo-placeholder square">🌿</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section class="section bg-white">
+  <div class="container">
+    <p class="section-label text-center">Naše vrednote</p>
+    <h2 class="section-title text-center">Na čem gradimo</h2>
+    <div class="values-grid" style="margin-top:2.5rem;">
+      <div class="value-card">
+        <div class="value-icon">🌿</div>
+        <div class="value-title">Svobodna reja</div>
+        <p class="value-desc">Vsaka kokoš ima minimalno 4m² pašnika. Ne 4m² v hali — 4m² zunaj, na travi, pod soncem.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🏠</div>
+        <div class="value-title">Lokalno</div>
+        <p class="value-desc">Dostavljamo v krogu 30km. Ne ker ne moremo dlje — ker svežina ima rok, ki ga ne moreš podaljšati s hladilno verigo.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🚫</div>
+        <div class="value-title">Brez kemikalij</div>
+        <p class="value-desc">Nič antibiotikov, nič pesticidov, nič rastnih hormonov. Nikoli. Ne ker je to trend — ker tako ne bi jedli sami.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">♻️</div>
+        <div class="value-title">Trajnostno</div>
+        <p class="value-desc">Kuhinjski odpadki postanejo larve, larve postanejo jajca, gnoj postane kompost. Sistem se hrani sam.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<div class="cta-banner">
+  <div class="container">
+    <h2>Spoznajte kmetijo osebno</h2>
+    <p>Vsako soboto ob 9:00 odprta kmetija za obiskovalce. Pridite, poglejte kokoši, prinesete otroka.</p>
+    <a href="preorder.html" class="btn btn-primary">Pišite nam →</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">Jutro s kmetije</div>
+        <p style="font-size:.9rem;margin-bottom:1rem;">Svobodna reja. Dostavljeno k tebi.</p>
+        <p style="font-size:.85rem;">📍 Slovenija, dostava v okolici 30km</p>
+        <p style="font-size:.85rem;">📞 <a href="tel:+38641000000">041 000 000</a></p>
+        <p style="font-size:.85rem;">✉️ <a href="mailto:info@jutroszkmetije.si">info@jutroszkmetije.si</a></p>
+      </div>
+      <div>
+        <h4>Strani</h4>
+        <ul>
+          <li><a href="index.html">Domov</a></li>
+          <li><a href="shop.html">Trgovina</a></li>
+          <li><a href="about.html">O nas</a></li>
+          <li><a href="preorder.html">Naroči</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Sledite nam</h4>
+        <ul>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Facebook</a></li>
+          <li><a href="#">TikTok</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Novice s kmetije</h4>
+        <form class="newsletter-form" onsubmit="event.preventDefault();this.innerHTML='<p style=color:var(--yellow);font-size:.9rem;>Hvala! 🥚</p>'">
+          <input type="email" placeholder="vaš@email.si" required>
+          <button type="submit">Pošlji</button>
+        </form>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Jutro s kmetije.</span>
+      <span>Z ljubeznijo narejen v Sloveniji 🇸🇮</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function updateCartBadge() {
+    const cart = JSON.parse(localStorage.getItem('jsk_cart') || '[]');
+    const total = cart.reduce((s, i) => s + i.qty, 0);
+    document.getElementById('cart-count').textContent = total;
+  }
+  updateCartBadge();
+</script>
+</body>
+</html>

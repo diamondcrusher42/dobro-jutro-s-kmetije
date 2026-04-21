@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prednaroči — Jutro s kmetije</title>
+  <meta name="description" content="Pridruži se čakalni vrsti. Sveža jajca, zelenjavna škatla ali zelišča — dostavljeno k tebi.">
+  <meta property="og:title" content="Pridruži se čakalni vrsti — Jutro s kmetije">
+  <meta property="og:description" content="Sveža jajca, zelenjavna škatla ali zelišča — dostavljeno k tebi. Prijavi se na čakalno vrsto.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;1,9..144,400&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .preorder-layout {
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 3.5rem;
+      align-items: start;
+    }
+    @media (max-width: 860px) { .preorder-layout { grid-template-columns: 1fr; } }
+
+    .preorder-card {
+      background: var(--white);
+      border-radius: 14px;
+      box-shadow: var(--shadow);
+      padding: 2.5rem;
+    }
+    .preorder-card h2 { margin-bottom: .5rem; font-size: 1.7rem; }
+    .preorder-card .subtitle { color: var(--gray); margin-bottom: 2rem; font-size: .95rem; }
+
+    .checkbox-group { display: flex; flex-direction: column; gap: .75rem; }
+    .checkbox-item { display: flex; align-items: center; gap: .75rem; cursor: pointer; }
+    .checkbox-item input[type="checkbox"] {
+      width: 18px; height: 18px;
+      accent-color: var(--green);
+      cursor: pointer;
+    }
+    .checkbox-item span { font-size: .95rem; }
+    .checkbox-item em { font-size: .8rem; color: var(--gray); font-style: normal; margin-left: .25rem; }
+
+    .trust-list { display: flex; flex-direction: column; gap: 1rem; }
+    .trust-item { display: flex; gap: .75rem; align-items: flex-start; }
+    .trust-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: .1rem; }
+    .trust-title { font-weight: 700; font-size: .95rem; margin-bottom: .15rem; }
+    .trust-desc { font-size: .85rem; color: var(--gray); }
+
+    .social-proof-strip {
+      background: var(--offwhite);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      border: 1.5px solid var(--gray-lt);
+      margin-bottom: 2rem;
+    }
+    .social-proof-strip p { font-size: .88rem; color: var(--gray); margin: 0; }
+    .social-proof-strip strong { color: var(--green-dk); }
+
+    .submit-btn {
+      width: 100%;
+      padding: 1.1rem;
+      font-size: 1.05rem;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 700;
+      background: var(--green-dk);
+      color: var(--white);
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background .2s, transform .2s;
+      margin-top: 1.5rem;
+    }
+    .submit-btn:hover { background: var(--green); transform: translateY(-2px); }
+    .submit-note { text-align: center; font-size: .82rem; color: var(--gray); margin-top: .75rem; }
+
+    .thank-you {
+      display: none;
+      text-align: center;
+      padding: 2rem 0;
+    }
+    .thank-you .ty-icon { font-size: 4rem; margin-bottom: 1rem; }
+    .thank-you h3 { font-size: 1.6rem; margin-bottom: .5rem; }
+    .thank-you p { color: var(--gray); font-size: .95rem; }
+
+    .faq { margin-top: 3rem; }
+    .faq h3 { font-size: 1.1rem; margin-bottom: 1.25rem; }
+    .faq-item { border-bottom: 1.5px solid var(--gray-lt); padding: 1rem 0; }
+    .faq-q { font-weight: 700; font-size: .95rem; margin-bottom: .35rem; }
+    .faq-a { font-size: .88rem; color: var(--gray); }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="index.html" class="nav-brand">Jutro s kmetije<span>Svobodna reja · Slovenija</span></a>
+  <input type="checkbox" id="nav-toggle" class="nav-toggle">
+  <label for="nav-toggle" class="nav-hamburger" aria-label="Meni">
+    <span></span><span></span><span></span>
+  </label>
+  <ul class="nav-links">
+    <li><a href="index.html">Domov</a></li>
+    <li><a href="shop.html">Trgovina</a></li>
+    <li><a href="about.html">O nas</a></li>
+    <li><a href="shop.html" class="cart-badge">Košarica <span class="badge-count" id="cart-count">0</span></a></li>
+    <li><a href="preorder.html" class="btn-nav active">Naroči</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" style="padding:5rem 1.5rem 4rem;">
+  <div class="container hero-inner">
+    <p class="hero-label" style="color:var(--yellow);">Čakalna vrsta</p>
+    <h1 style="color:var(--white);">Pridruži se<br><em style="color:var(--yellow);font-style:italic;">prvi dostavi</em></h1>
+    <p class="hero-tagline">Pustite kontaktne podatke in sporočite, kaj vas zanima. Javimo se, ko bo vaš termin dostave prost.</p>
+  </div>
+</section>
+
+<!-- MAIN CONTENT -->
+<section class="section bg-offwhite">
+  <div class="container">
+    <div class="preorder-layout">
+
+      <!-- Left: form -->
+      <div class="preorder-card">
+        <h2>Prijava na čakalno vrsto</h2>
+        <p class="subtitle">Brez obveznosti. Brez predplačila. Samo sporočite nam, kaj vas zanima.</p>
+
+        <div class="social-proof-strip">
+          <p>🥚 <strong>40+ gospodinjstev</strong> in <strong>4 restavracije</strong> že naročajo tedensko. Dostava tor + pet v krogu 30km.</p>
+        </div>
+
+        <!-- Thank you state -->
+        <div class="thank-you" id="thank-you">
+          <div class="ty-icon">🥚</div>
+          <h3>Hvala za prijavo!</h3>
+          <p>Vaši podatki so pri nas. Javimo se v 48h s podrobnostmi glede prve dostave.</p>
+          <p style="margin-top:1rem;"><a href="index.html" style="color:var(--green);font-weight:700;">← Nazaj na domačo stran</a></p>
+        </div>
+
+        <!-- Form -->
+        <form id="preorder-form" action="https://formspree.io/f/YOURFORMID" method="POST" onsubmit="handlePreorder(event)">
+          <input type="hidden" name="_subject" value="Nova prijava čakalna vrsta — Jutro s kmetije">
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="ime">Ime in priimek *</label>
+              <input type="text" id="ime" name="ime" placeholder="Ana Novak" required>
+            </div>
+            <div class="form-group">
+              <label for="email">E-pošta *</label>
+              <input type="email" id="email" name="email" placeholder="ana@email.si" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="telefon">Telefon</label>
+            <input type="tel" id="telefon" name="telefon" placeholder="041 000 000">
+          </div>
+
+          <div class="form-group">
+            <label>Kaj vas zanima? *</label>
+            <div class="checkbox-group">
+              <label class="checkbox-item">
+                <input type="checkbox" name="zanima" value="jajca">
+                <span>🥚 Sveža jajca <em>(15 ali 30-pack)</em></span>
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" name="zanima" value="zelenjavna_skatla">
+                <span>🥦 Zelenjavna škatla <em>(tedenska ali dvotedensko)</em></span>
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" name="zanima" value="zelisca">
+                <span>🌿 Zelišča <em>(šopek svežih zelišč)</em></span>
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" name="zanima" value="vse">
+                <span>📦 Vse skupaj — škatla z vsem</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="sporocilo">Sporočilo <span style="color:var(--gray);font-weight:400;">(neobvezno)</span></label>
+            <textarea id="sporocilo" name="sporocilo" placeholder="Posebne želje, vprašanja, ali kje ste izvedeli za nas..."></textarea>
+          </div>
+
+          <button type="submit" class="submit-btn">Pridruži se čakalni vrsti →</button>
+          <p class="submit-note">Brez obveznosti. Brez predplačila. Odjavite se kadarkoli.</p>
+        </form>
+
+        <!-- FAQ -->
+        <div class="faq">
+          <h3>Pogosta vprašanja</h3>
+          <div class="faq-item">
+            <div class="faq-q">Kdaj se javite?</div>
+            <div class="faq-a">V 24–48 urah. Pišemo po e-pošti ali pokličemo glede na vaše preference.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q">Kje dostavljate?</div>
+            <div class="faq-a">Trenutno v krogu 30km od kmetije (Ljubljana, Domžale, Kamnik, Trzin in okolica). Sporočite naslov in preverimo.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q">Kako plačam?</div>
+            <div class="faq-a">Plačilo ob dostavi — gotovina ali UPN nakazilo. Predplačila ni. Predračun na zahtevo.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q">Moram naročati vsak teden?</div>
+            <div class="faq-a">Ne. Naročate, kadar hočete. Tedenski termini so prednostni, enkratna naročila pa so dobrodošla, dokler imamo kapacitete.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: trust signals -->
+      <div>
+        <h3 style="font-size:1.2rem;margin-bottom:1.5rem;">Zakaj naročniki ostanejo</h3>
+        <div class="trust-list">
+          <div class="trust-item">
+            <div class="trust-icon">🌅</div>
+            <div>
+              <div class="trust-title">Pobrano zjutraj, pri vas do kosila</div>
+              <p class="trust-desc">Supermarketska jajca so stara 3 tedne. Naša so pobrana isti dan.</p>
+            </div>
+          </div>
+          <div class="trust-item">
+            <div class="trust-icon">🐔</div>
+            <div>
+              <div class="trust-title">500 kokoši, 15.000m² pašnika</div>
+              <p class="trust-desc">Rotacijski sistem — vsaka kokoš ima vedno svežo travo in prostor za gibanje.</p>
+            </div>
+          </div>
+          <div class="trust-item">
+            <div class="trust-icon">🚫</div>
+            <div>
+              <div class="trust-title">Nič kemikalij, nikoli</div>
+              <p class="trust-desc">Brez antibiotikov, brez pesticidov, brez rastnih hormonov.</p>
+            </div>
+          </div>
+          <div class="trust-item">
+            <div class="trust-icon">💳</div>
+            <div>
+              <div class="trust-title">Plačilo ob dostavi</div>
+              <p class="trust-desc">Nobenega predplačila. Plačate, ko prejmete in ste zadovoljni.</p>
+            </div>
+          </div>
+          <div class="trust-item">
+            <div class="trust-icon">📍</div>
+            <div>
+              <div class="trust-title">Lokalno — Slovenija</div>
+              <p class="trust-desc">Dostava v krogu 30km. Vaš denar ostane v lokalni ekonomiji.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial -->
+        <div class="testimonial" style="margin-top:2rem;">
+          <blockquote>"Naročamo vsak teden od marca. Rumenjak je res oranžen — nič takega nisem videla v supermarketu."</blockquote>
+          <cite>— Maja K., Ljubljana</cite>
+        </div>
+        <div class="testimonial" style="margin-top:1rem;">
+          <blockquote>"Kot kuhar cenim kakovost. Ta jajca so na drugem nivoju — barva, konsistenca, okus. Naročajte!"</blockquote>
+          <cite>— Chef Rok, restavracija Izvir</cite>
+        </div>
+
+        <!-- Photo placeholder -->
+        <div class="photo-placeholder" style="margin-top:2rem;aspect-ratio:4/3;">🌿</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">Jutro s kmetije</div>
+        <p style="font-size:.9rem;margin-bottom:1rem;">Svobodna reja. Dostavljeno k tebi.</p>
+        <p style="font-size:.85rem;">📍 Slovenija, dostava v okolici 30km</p>
+        <p style="font-size:.85rem;">📞 <a href="tel:+38641000000">041 000 000</a></p>
+        <p style="font-size:.85rem;">✉️ <a href="mailto:info@jutroszkmetije.si">info@jutroszkmetije.si</a></p>
+      </div>
+      <div>
+        <h4>Strani</h4>
+        <ul>
+          <li><a href="index.html">Domov</a></li>
+          <li><a href="shop.html">Trgovina</a></li>
+          <li><a href="about.html">O nas</a></li>
+          <li><a href="preorder.html">Naroči</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Sledite nam</h4>
+        <ul>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Facebook</a></li>
+          <li><a href="#">TikTok</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Novice s kmetije</h4>
+        <form class="newsletter-form" onsubmit="event.preventDefault();this.innerHTML='<p style=color:var(--yellow);font-size:.9rem;>Hvala! 🥚</p>'">
+          <input type="email" placeholder="vaš@email.si" required>
+          <button type="submit">Pošlji</button>
+        </form>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Jutro s kmetije.</span>
+      <span>Z ljubeznijo narejen v Sloveniji 🇸🇮</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function updateCartBadge() {
+    const cart = JSON.parse(localStorage.getItem('jsk_cart') || '[]');
+    const total = cart.reduce((s, i) => s + i.qty, 0);
+    document.getElementById('cart-count').textContent = total;
+  }
+  updateCartBadge();
+
+  function handlePreorder(e) {
+    e.preventDefault();
+    const form = document.getElementById('preorder-form');
+    const checkboxes = form.querySelectorAll('input[type="checkbox"]:checked');
+    if (checkboxes.length === 0) {
+      alert('Prosimo, izberite vsaj eno možnost (kaj vas zanima).');
+      return;
+    }
+    const data = new FormData(form);
+    fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } })
+      .then(() => {
+        form.style.display = 'none';
+        document.getElementById('thank-you').style.display = 'block';
+      })
+      .catch(() => {
+        // Formspree not configured — show success for demo
+        form.style.display = 'none';
+        document.getElementById('thank-you').style.display = 'block';
+      });
+  }
+</script>
+</body>
+</html>

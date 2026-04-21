@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Design Comparison — Jutro s kmetije</title>
+  <meta name="description" content="Pick your favourite design for Jutro s kmetije.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --green-dk: #1A3D1F;
+      --green: #2E7D32;
+      --yellow: #F9C800;
+      --white: #FFFFFF;
+      --bg: #F6F8F6;
+      --border: #E5E7EB;
+      --text: #1C2B1E;
+      --text-lt: #6B7280;
+    }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); }
+    a { color: inherit; text-decoration: none; }
+
+    /* HEADER */
+    .header { background: var(--green-dk); color: var(--white); padding: 3.5rem 2rem 3rem; text-align: center; }
+    .header-eyebrow { font-size: .8rem; text-transform: uppercase; letter-spacing: .15em; color: var(--yellow); font-weight: 700; margin-bottom: .75rem; }
+    .header h1 { font-family: 'Fraunces', serif; font-size: clamp(1.8rem, 4vw, 3rem); margin-bottom: .75rem; }
+    .header p { color: rgba(255,255,255,.7); max-width: 52ch; margin: 0 auto 1.5rem; line-height: 1.6; font-size: .95rem; }
+    .back-link { display: inline-flex; align-items: center; gap: .4rem; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2); border-radius: 6px; padding: .4rem 1rem; font-size: .85rem; color: rgba(255,255,255,.8); transition: background .15s; }
+    .back-link:hover { background: rgba(255,255,255,.18); }
+
+    /* MAIN */
+    .main { max-width: 1400px; margin: 0 auto; padding: 3rem 2rem 5rem; }
+
+    /* DESIGN CARDS */
+    .designs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 2.5rem; }
+    @media (max-width: 440px) { .designs-grid { grid-template-columns: 1fr; } }
+
+    .design-card { background: var(--white); border-radius: 14px; box-shadow: 0 4px 24px rgba(26,61,31,.1); overflow: hidden; border: 1.5px solid var(--border); transition: transform .2s, box-shadow .2s; }
+    .design-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(26,61,31,.16); }
+
+    .design-preview { position: relative; height: 280px; overflow: hidden; }
+    .design-preview iframe { width: 200%; height: 200%; border: none; transform: scale(.5); transform-origin: 0 0; pointer-events: none; }
+    .preview-overlay { position: absolute; inset: 0; cursor: pointer; }
+    .preview-label { position: absolute; top: .75rem; left: .75rem; background: var(--green-dk); color: var(--white); font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; padding: .25rem .65rem; border-radius: 4px; }
+
+    .design-body { padding: 1.75rem; border-top: 1.5px solid var(--border); }
+    .design-name { font-family: 'Fraunces', serif; font-size: 1.4rem; margin-bottom: .35rem; }
+    .design-desc { font-size: .875rem; color: var(--text-lt); line-height: 1.6; margin-bottom: 1.25rem; }
+    .design-tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: 1.25rem; }
+    .tag { background: var(--bg); border: 1px solid var(--border); border-radius: 999px; padding: .2rem .65rem; font-size: .75rem; font-weight: 600; color: var(--text-lt); }
+    .design-actions { display: flex; gap: .75rem; }
+    .btn-view { flex: 1; text-align: center; padding: .7rem; border-radius: 8px; font-weight: 700; font-size: .9rem; transition: all .15s; }
+    .btn-primary { background: var(--green-dk); color: var(--white); }
+    .btn-primary:hover { background: var(--green); }
+    .btn-outline { border: 1.5px solid var(--green-dk); color: var(--green-dk); }
+    .btn-outline:hover { background: var(--green-dk); color: var(--white); }
+
+    /* VOTE SECTION */
+    .vote-section { margin-top: 4rem; background: var(--white); border-radius: 14px; padding: 2.5rem; text-align: center; box-shadow: 0 2px 16px rgba(26,61,31,.07); border: 1.5px solid var(--border); }
+    .vote-title { font-family: 'Fraunces', serif; font-size: 1.6rem; margin-bottom: .5rem; }
+    .vote-sub { color: var(--text-lt); font-size: .9rem; margin-bottom: 2rem; }
+    .vote-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .vote-btn { padding: .75rem 1.75rem; border-radius: 10px; font-weight: 700; font-size: .95rem; cursor: pointer; border: none; font-family: 'DM Sans', sans-serif; transition: all .15s; }
+    .vote-btn:hover { transform: translateY(-2px); }
+    .vote-btn.v1 { background: #F0F0F0; color: var(--text); }
+    .vote-btn.v1:hover { background: #E0E0E0; }
+    .vote-btn.v2 { background: var(--yellow); color: var(--green-dk); }
+    .vote-btn.v2:hover { background: #e6b800; }
+    .vote-btn.v3 { background: var(--green-dk); color: var(--white); }
+    .vote-btn.v3:hover { background: var(--green); }
+    .vote-result { display: none; margin-top: 1.5rem; font-size: 1.05rem; color: var(--green); font-weight: 700; }
+
+    /* COMPARISON TABLE */
+    .compare { margin-top: 4rem; }
+    .compare h2 { font-family: 'Fraunces', serif; font-size: 1.5rem; margin-bottom: 1.5rem; }
+    .compare-table { width: 100%; border-collapse: collapse; font-size: .9rem; }
+    .compare-table th { background: var(--green-dk); color: var(--white); padding: .75rem 1rem; text-align: left; font-weight: 600; }
+    .compare-table td { padding: .7rem 1rem; border-bottom: 1px solid var(--border); }
+    .compare-table tr:nth-child(even) td { background: var(--bg); }
+    .compare-table .tick { color: var(--green); font-weight: 700; }
+    .compare-table .cross { color: #ccc; }
+
+    /* FOOTER */
+    .footer { background: var(--green-dk); color: rgba(255,255,255,.6); padding: 2rem; text-align: center; font-size: .82rem; }
+    .footer a { color: var(--yellow); }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-eyebrow">Design Review</div>
+  <h1>Izberi dizajn</h1>
+  <p>Tri različice landing page-a za Jutro s kmetije. Vsaka je narejena za drugačen občutek — izberi, katera se ti zdi prava.</p>
+  <a href="../index.html" class="back-link">← Nazaj na glavno stran</a>
+</header>
+
+<!-- MAIN -->
+<main class="main">
+
+  <!-- DESIGNS GRID -->
+  <div class="designs-grid">
+
+    <!-- Minimal -->
+    <div class="design-card">
+      <div class="design-preview">
+        <iframe src="minimal.html" loading="lazy" title="Minimal design preview"></iframe>
+        <a href="minimal.html" class="preview-overlay" title="Odpri Minimal v polni velikosti"></a>
+        <span class="preview-label">Minimal</span>
+      </div>
+      <div class="design-body">
+        <div class="design-name">Editorial Minimal</div>
+        <p class="design-desc">Bela podlaga, velika tipografija Fraunces, tanka obroba, linijaste SVG ilustracije jajc. Navdihnjeno s premium food brandi (Ottolenghi, Monocle). Ogromno beline — produkt govori sam.</p>
+        <div class="design-tags">
+          <span class="tag">Premium</span>
+          <span class="tag">Bela ozadja</span>
+          <span class="tag">SVG ilustracije</span>
+          <span class="tag">Ottolenghi vibes</span>
+        </div>
+        <div class="design-actions">
+          <a href="minimal.html" class="btn-view btn-primary">Odpri →</a>
+          <a href="minimal.html" target="_blank" class="btn-view btn-outline">Nov zavihek</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Market -->
+    <div class="design-card">
+      <div class="design-preview">
+        <iframe src="market.html" loading="lazy" title="Market design preview"></iframe>
+        <a href="market.html" class="preview-overlay" title="Odpri Market v polni velikosti"></a>
+        <span class="preview-label">Tržnica</span>
+      </div>
+      <div class="design-body">
+        <div class="design-name">Bold Market Stall</div>
+        <p class="design-desc">Rumeno ozadje heroja, temno zeleni napisi, nagnjeni elementi, "Danes sveže" badge, animiran ticker, kartice z obrobo. Energija tržnice — glasno, živo, prepričljivo.</p>
+        <div class="design-tags">
+          <span class="tag">Rumena</span>
+          <span class="tag">Tržnica</span>
+          <span class="tag">Nagnjena pisava</span>
+          <span class="tag">Ticker animacija</span>
+        </div>
+        <div class="design-actions">
+          <a href="market.html" class="btn-view btn-primary">Odpri →</a>
+          <a href="market.html" target="_blank" class="btn-view btn-outline">Nov zavihek</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modern -->
+    <div class="design-card">
+      <div class="design-preview">
+        <iframe src="modern.html" loading="lazy" title="Modern design preview"></iframe>
+        <a href="modern.html" class="preview-overlay" title="Odpri Modern v polni velikosti"></a>
+        <span class="preview-label">Modern</span>
+      </div>
+      <div class="design-body">
+        <div class="design-name">Clean SaaS-style</div>
+        <p class="design-desc">CSS grid, kartice s sencami, gradient hero, frosted glass navigacija. Pricing table z subscription tiers. Vključuje HoReCa B2B sekcijo. Boljše za naprednejšega naročnika.</p>
+        <div class="design-tags">
+          <span class="tag">Kartice</span>
+          <span class="tag">Pricing table</span>
+          <span class="tag">HoReCa B2B</span>
+          <span class="tag">Frosted glass</span>
+        </div>
+        <div class="design-actions">
+          <a href="modern.html" class="btn-view btn-primary">Odpri →</a>
+          <a href="modern.html" target="_blank" class="btn-view btn-outline">Nov zavihek</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- VOTE -->
+  <div class="vote-section">
+    <h2 class="vote-title">Kateri ti je ljubši?</h2>
+    <p class="vote-sub">Klikni in pošlji rezultat Juretu — da ve, kateri dizajn nadaljevati.</p>
+    <div class="vote-buttons">
+      <button class="vote-btn v1" onclick="vote('Minimal — Editorial')">Minimal</button>
+      <button class="vote-btn v2" onclick="vote('Tržnica — Bold Market')">Tržnica (rumena)</button>
+      <button class="vote-btn v3" onclick="vote('Modern — SaaS style')">Modern (zelena)</button>
+    </div>
+    <div class="vote-result" id="vote-result"></div>
+  </div>
+
+  <!-- COMPARISON TABLE -->
+  <div class="compare">
+    <h2>Primerjava dizajnov</h2>
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>Lastnost</th>
+          <th>Minimal</th>
+          <th>Tržnica</th>
+          <th>Modern</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Primerno za gospodinjstva</td>
+          <td class="tick">✓✓</td>
+          <td class="tick">✓✓✓</td>
+          <td class="tick">✓✓</td>
+        </tr>
+        <tr>
+          <td>Primerno za HoReCa B2B</td>
+          <td class="tick">✓✓</td>
+          <td class="tick">✓</td>
+          <td class="tick">✓✓✓</td>
+        </tr>
+        <tr>
+          <td>Pricing table</td>
+          <td class="cross">–</td>
+          <td class="cross">–</td>
+          <td class="tick">✓</td>
+        </tr>
+        <tr>
+          <td>SVG ilustracije</td>
+          <td class="tick">✓</td>
+          <td class="cross">–</td>
+          <td class="cross">–</td>
+        </tr>
+        <tr>
+          <td>Emoji animacija / ticker</td>
+          <td class="cross">–</td>
+          <td class="tick">✓</td>
+          <td class="cross">–</td>
+        </tr>
+        <tr>
+          <td>Newsletter form</td>
+          <td class="cross">–</td>
+          <td class="cross">–</td>
+          <td class="tick">✓</td>
+        </tr>
+        <tr>
+          <td>Premium / artisan občutek</td>
+          <td class="tick">★★★</td>
+          <td class="tick">★★</td>
+          <td class="tick">★★★</td>
+        </tr>
+        <tr>
+          <td>Energija in zabava</td>
+          <td class="tick">★</td>
+          <td class="tick">★★★</td>
+          <td class="tick">★★</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p>Jutro s kmetije &nbsp;·&nbsp; <a href="../index.html">Domov</a> &nbsp;·&nbsp; <a href="../shop.html">Trgovina</a> &nbsp;·&nbsp; <a href="../preorder.html">Naroči</a></p>
+</footer>
+
+<script>
+function vote(design) {
+  const el = document.getElementById('vote-result');
+  el.style.display = 'block';
+  el.textContent = `Izbral si: "${design}" — hvala! Pošlji ta rezultat Juretu. 🥚`;
+  // In production: could POST to Formspree or send via mailto
+  const subject = encodeURIComponent('Moj izbrani dizajn — Jutro s kmetije');
+  const body = encodeURIComponent(`Pozdravljeni,\n\nIzbral/a sem dizajn: ${design}\n\nLepo pozdravljeni!`);
+  el.innerHTML += ` <a href="mailto:info@jutroszkmetije.si?subject=${subject}&body=${body}" style="color:var(--green);text-decoration:underline;font-size:.9rem;">Pošlji po e-pošti →</a>`;
+}
+</script>
+</body>
+</html>

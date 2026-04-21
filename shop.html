@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trgovina — Jutro s kmetije</title>
+  <meta name="description" content="Naročite sveža jajca, zelenjavno škatlo ali zelišča. Dostava dvakrat tedensko.">
+  <meta property="og:title" content="Trgovina — Jutro s kmetije">
+  <meta property="og:description" content="Naročite sveža jajca, zelenjavno škatlo ali zelišča. Dostava dvakrat tedensko.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;1,9..144,400&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.75rem; }
+    .product-card { background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; transition: transform .2s ease, box-shadow .2s ease; }
+    .product-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(26,61,31,.16); }
+    .product-badge { position: absolute; top: 1rem; left: 1rem; background: var(--yellow); color: var(--green-dk); font-size: .75rem; font-weight: 700; padding: .25rem .6rem; border-radius: 999px; text-transform: uppercase; }
+    .product-img { position: relative; }
+    .product-body { padding: 1.5rem; }
+    .product-name { font-size: 1.2rem; margin-bottom: .4rem; }
+    .product-desc { font-size: .9rem; color: var(--gray); margin-bottom: 1rem; line-height: 1.55; }
+    .product-price { font-family: 'Fraunces', serif; font-size: 1.6rem; color: var(--green-dk); }
+    .product-price small { font-family: 'DM Sans', sans-serif; font-size: .85rem; color: var(--gray); font-weight: 400; }
+    .product-variants { display: flex; gap: .5rem; flex-wrap: wrap; margin-bottom: 1.25rem; margin-top: .75rem; }
+    .variant-btn { border: 1.5px solid var(--gray-lt); background: var(--white); color: var(--green-dk); padding: .35rem .75rem; border-radius: 6px; font-size: .85rem; cursor: pointer; transition: all .15s; }
+    .variant-btn.selected, .variant-btn:hover { border-color: var(--green); background: var(--green); color: var(--white); }
+    .add-btn { width: 100%; padding: .75rem; background: var(--green-dk); color: var(--white); border: none; border-radius: 8px; font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 1rem; cursor: pointer; transition: background .2s; }
+    .add-btn:hover { background: var(--green); }
+    .add-btn.added { background: var(--green); }
+
+    /* Cart sidebar */
+    .cart-section { background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow); padding: 1.75rem; position: sticky; top: 80px; }
+    .cart-title { font-size: 1.2rem; margin-bottom: 1.25rem; padding-bottom: .75rem; border-bottom: 1.5px solid var(--gray-lt); }
+    .cart-item { display: flex; justify-content: space-between; align-items: center; padding: .6rem 0; border-bottom: 1px solid var(--gray-lt); font-size: .9rem; }
+    .cart-item-name { flex: 1; }
+    .cart-item-qty { color: var(--gray); margin: 0 .75rem; }
+    .cart-item-price { font-weight: 700; }
+    .cart-remove { background: none; border: none; color: var(--gray); cursor: pointer; font-size: 1.1rem; padding: 0 .25rem; }
+    .cart-total { display: flex; justify-content: space-between; font-weight: 700; font-size: 1.05rem; padding-top: .75rem; margin-top: .5rem; border-top: 2px solid var(--green-dk); }
+    .cart-empty { color: var(--gray); font-size: .9rem; text-align: center; padding: 1rem 0; }
+
+    .shop-layout { display: grid; grid-template-columns: 1fr 320px; gap: 2.5rem; align-items: start; }
+    @media (max-width: 900px) { .shop-layout { grid-template-columns: 1fr; } .cart-section { position: static; } }
+
+    .checkout-form-section { background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow); padding: 2rem; margin-top: 2.5rem; }
+    .checkout-form-section h2 { font-size: 1.5rem; margin-bottom: 1.5rem; }
+    .form-note { font-size: .85rem; color: var(--gray); margin-top: .75rem; display: flex; align-items: center; gap: .4rem; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="index.html" class="nav-brand">Jutro s kmetije<span>Svobodna reja · Slovenija</span></a>
+  <input type="checkbox" id="nav-toggle" class="nav-toggle">
+  <label for="nav-toggle" class="nav-hamburger" aria-label="Meni">
+    <span></span><span></span><span></span>
+  </label>
+  <ul class="nav-links">
+    <li><a href="index.html">Domov</a></li>
+    <li><a href="shop.html" class="active">Trgovina</a></li>
+    <li><a href="about.html">O nas</a></li>
+    <li><a href="shop.html" class="cart-badge">Košarica <span class="badge-count" id="cart-count">0</span></a></li>
+    <li><a href="preorder.html" class="btn-nav">Naroči</a></li>
+  </ul>
+</nav>
+
+<!-- PAGE HEADER -->
+<div style="background:var(--green-dk);color:var(--white);padding:3rem 1.5rem 2.5rem;">
+  <div class="container">
+    <p class="hero-label" style="color:var(--yellow);font-size:.8rem;text-transform:uppercase;letter-spacing:.14em;font-weight:700;">Svežina z doma</p>
+    <h1 style="color:var(--white);font-size:clamp(1.8rem,4vw,2.8rem);margin-bottom:.5rem;">Naša trgovina</h1>
+    <p style="color:rgba(255,255,255,.7);">Izberite produkte, dodajte v košarico in izpolnite naročilo spodaj.</p>
+  </div>
+</div>
+
+<!-- MAIN SHOP -->
+<section class="section bg-offwhite" style="padding-top:3rem;">
+  <div class="container">
+    <div class="shop-layout">
+      <!-- Products -->
+      <div>
+        <h2 style="font-size:1.3rem;margin-bottom:1.5rem;">Produkti</h2>
+        <div class="product-grid">
+
+          <!-- Jajca 30 -->
+          <div class="product-card">
+            <div class="product-img">
+              <div class="photo-placeholder" style="aspect-ratio:16/9;border-radius:0;">🥚</div>
+              <span class="product-badge">Prihranek</span>
+            </div>
+            <div class="product-body">
+              <h3 class="product-name">Sveža jajca — 30 kom</h3>
+              <p class="product-desc">Pobrana danes zjutraj. Kokoši na prostem, krmljene z BSF larvami brez kemikalij. Rumenjak globoko oranžen.</p>
+              <div class="product-price">€13.50 <small>/ 30 kom (€0.45/jajce)</small></div>
+              <button class="add-btn mt-2" onclick="addToCart('Jajca 30-pack', 13.50, this)">Dodaj v košarico</button>
+            </div>
+          </div>
+
+          <!-- Jajca 15 -->
+          <div class="product-card">
+            <div class="product-img">
+              <div class="photo-placeholder" style="aspect-ratio:16/9;border-radius:0;">🥚</div>
+            </div>
+            <div class="product-body">
+              <h3 class="product-name">Sveža jajca — 15 kom</h3>
+              <p class="product-desc">Manjši paket za manjše gospodinjstvo. Ista kakovost, enaka svežina.</p>
+              <div class="product-price">€7.50 <small>/ 15 kom (€0.50/jajce)</small></div>
+              <button class="add-btn mt-2" onclick="addToCart('Jajca 15-pack', 7.50, this)">Dodaj v košarico</button>
+            </div>
+          </div>
+
+          <!-- Zelenjavna škatla tedensko -->
+          <div class="product-card">
+            <div class="product-img">
+              <div class="photo-placeholder" style="aspect-ratio:16/9;border-radius:0;">🥦</div>
+              <span class="product-badge">Priljubljeno</span>
+            </div>
+            <div class="product-body">
+              <h3 class="product-name">Zelenjavna škatla — tedenska</h3>
+              <p class="product-desc">Kar zraste ta teden — solate, paradižnik, bučke, korenček, paprika. Sestava se menja sezonsko.</p>
+              <div class="product-price">€18 <small>/ teden</small></div>
+              <button class="add-btn mt-2" onclick="addToCart('Zelenjavna škatla (tedenska)', 18, this)">Dodaj v košarico</button>
+            </div>
+          </div>
+
+          <!-- Zelenjavna škatla dvotedensko -->
+          <div class="product-card">
+            <div class="product-img">
+              <div class="photo-placeholder" style="aspect-ratio:16/9;border-radius:0;">🥕</div>
+            </div>
+            <div class="product-body">
+              <h3 class="product-name">Zelenjavna škatla — dvotedensko</h3>
+              <p class="product-desc">Idealno za manjše gospodinjstvo ali kogar ne potrebuje vsak teden polne škatle.</p>
+              <div class="product-price">€10 <small>/ 2 tedna</small></div>
+              <button class="add-btn mt-2" onclick="addToCart('Zelenjavna škatla (dvotedensko)', 10, this)">Dodaj v košarico</button>
+            </div>
+          </div>
+
+          <!-- Zelišča -->
+          <div class="product-card">
+            <div class="product-img">
+              <div class="photo-placeholder" style="aspect-ratio:16/9;border-radius:0;">🌿</div>
+            </div>
+            <div class="product-body">
+              <h3 class="product-name">Zelišča — šopek</h3>
+              <p class="product-desc">Bazilika, timijan, peteršilj ali meta. Porezano tik pred dostavo, pakiran svež.</p>
+              <div class="product-price">€6 <small>/ šopek</small></div>
+              <button class="add-btn mt-2" onclick="addToCart('Zelišča — šopek', 6, this)">Dodaj v košarico</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Cart Sidebar -->
+      <div class="cart-section">
+        <h3 class="cart-title">🛒 Košarica</h3>
+        <div id="cart-items">
+          <p class="cart-empty">Košarica je prazna.</p>
+        </div>
+        <div class="cart-total" id="cart-total" style="display:none;">
+          <span>Skupaj</span>
+          <span id="cart-total-amount">€0</span>
+        </div>
+        <button class="btn btn-primary" style="width:100%;margin-top:1.25rem;" onclick="scrollToCheckout()">Nadaljuj na naročilo →</button>
+        <p style="font-size:.8rem;color:var(--gray);text-align:center;margin-top:.75rem;">Plačilo ob dostavi ali po predračunu.</p>
+      </div>
+    </div>
+
+    <!-- Checkout Form -->
+    <div class="checkout-form-section" id="checkout">
+      <h2>Izpolnite naročilo</h2>
+
+      <div class="success-msg" id="success-msg">
+        <div class="success-icon">✅</div>
+        <h3 style="margin-bottom:.5rem;">Naročilo prejeto!</h3>
+        <p>Hvala za naročilo. Javimo se v 24h s potrdilom in podrobnostmi dostave.</p>
+      </div>
+
+      <form id="order-form" action="https://formspree.io/f/YOURFORMID" method="POST" onsubmit="handleSubmit(event)">
+        <input type="hidden" name="_subject" value="Novo naročilo — Jutro s kmetije">
+        <input type="hidden" name="cart" id="form-cart" value="">
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="ime">Ime in priimek *</label>
+            <input type="text" id="ime" name="ime" placeholder="Ana Novak" required>
+          </div>
+          <div class="form-group">
+            <label for="email">E-pošta *</label>
+            <input type="email" id="email" name="email" placeholder="ana@email.si" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="telefon">Telefon *</label>
+            <input type="tel" id="telefon" name="telefon" placeholder="041 000 000" required>
+          </div>
+          <div class="form-group">
+            <label for="dostava-dan">Prednostni dan dostave</label>
+            <select id="dostava-dan" name="dostava_dan">
+              <option value="">Ni važno</option>
+              <option value="torek">Torek</option>
+              <option value="petek">Petek</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="naslov">Naslov dostave *</label>
+          <input type="text" id="naslov" name="naslov" placeholder="Ulica 1, 1000 Ljubljana" required>
+        </div>
+        <div class="form-group">
+          <label for="opombe">Opombe</label>
+          <textarea id="opombe" name="opombe" placeholder="Kamera na hodniku, pustite pri vratih..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%;padding:1rem;font-size:1.05rem;">Pošlji naročilo</button>
+        <p class="form-note">💳 Plačilo ob dostavi ali po predračunu. Ni predplačila.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<div class="cta-banner">
+  <div class="container">
+    <h2>Redno naročilo = prednost pri dostavi</h2>
+    <p>Registrirajte se na čakalni listi za tedenske naročnike — prednostni termini in boljša cena.</p>
+    <a href="preorder.html" class="btn btn-primary">Pridruži se čakalni vrsti</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">Jutro s kmetije</div>
+        <p style="font-size:.9rem;margin-bottom:1rem;">Svobodna reja. Dostavljeno k tebi.</p>
+        <p style="font-size:.85rem;">📍 Slovenija, dostava v okolici 30km</p>
+        <p style="font-size:.85rem;">📞 <a href="tel:+38641000000">041 000 000</a></p>
+        <p style="font-size:.85rem;">✉️ <a href="mailto:info@jutroszkmetije.si">info@jutroszkmetije.si</a></p>
+      </div>
+      <div>
+        <h4>Strani</h4>
+        <ul>
+          <li><a href="index.html">Domov</a></li>
+          <li><a href="shop.html">Trgovina</a></li>
+          <li><a href="about.html">O nas</a></li>
+          <li><a href="preorder.html">Naroči</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Sledite nam</h4>
+        <ul>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Facebook</a></li>
+          <li><a href="#">TikTok</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Novice s kmetije</h4>
+        <form class="newsletter-form" onsubmit="event.preventDefault();this.innerHTML='<p style=color:var(--yellow);font-size:.9rem;>Hvala! 🥚</p>'">
+          <input type="email" placeholder="vaš@email.si" required>
+          <button type="submit">Pošlji</button>
+        </form>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Jutro s kmetije.</span>
+      <span>Z ljubeznijo narejen v Sloveniji 🇸🇮</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+let cart = JSON.parse(localStorage.getItem('jsk_cart') || '[]');
+
+function updateCartBadge() {
+  const total = cart.reduce((s, i) => s + i.qty, 0);
+  document.getElementById('cart-count').textContent = total;
+}
+
+function renderCart() {
+  const el = document.getElementById('cart-items');
+  const totalEl = document.getElementById('cart-total');
+  const totalAmtEl = document.getElementById('cart-total-amount');
+
+  if (cart.length === 0) {
+    el.innerHTML = '<p class="cart-empty">Košarica je prazna.</p>';
+    totalEl.style.display = 'none';
+    return;
+  }
+
+  let html = '';
+  let sum = 0;
+  cart.forEach((item, idx) => {
+    sum += item.price * item.qty;
+    html += `<div class="cart-item">
+      <span class="cart-item-name">${item.name}</span>
+      <span class="cart-item-qty">×${item.qty}</span>
+      <span class="cart-item-price">€${(item.price * item.qty).toFixed(2)}</span>
+      <button class="cart-remove" onclick="removeFromCart(${idx})">✕</button>
+    </div>`;
+  });
+  el.innerHTML = html;
+  totalAmtEl.textContent = '€' + sum.toFixed(2);
+  totalEl.style.display = 'flex';
+  document.getElementById('form-cart').value = cart.map(i => `${i.name} ×${i.qty} = €${(i.price*i.qty).toFixed(2)}`).join('; ');
+}
+
+function addToCart(name, price, btn) {
+  const existing = cart.find(i => i.name === name);
+  if (existing) {
+    existing.qty++;
+  } else {
+    cart.push({ name, price, qty: 1 });
+  }
+  localStorage.setItem('jsk_cart', JSON.stringify(cart));
+  renderCart();
+  updateCartBadge();
+  btn.textContent = 'Dodano ✓';
+  btn.classList.add('added');
+  setTimeout(() => { btn.textContent = 'Dodaj v košarico'; btn.classList.remove('added'); }, 1500);
+}
+
+function removeFromCart(idx) {
+  cart.splice(idx, 1);
+  localStorage.setItem('jsk_cart', JSON.stringify(cart));
+  renderCart();
+  updateCartBadge();
+}
+
+function scrollToCheckout() {
+  document.getElementById('checkout').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function handleSubmit(e) {
+  e.preventDefault();
+  if (cart.length === 0) {
+    alert('Prosimo, dodajte vsaj en produkt v košarico.');
+    return;
+  }
+  const form = document.getElementById('order-form');
+  const data = new FormData(form);
+  fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } })
+    .then(r => {
+      form.style.display = 'none';
+      document.getElementById('success-msg').style.display = 'block';
+      cart = [];
+      localStorage.removeItem('jsk_cart');
+      updateCartBadge();
+      renderCart();
+    })
+    .catch(() => {
+      // Formspree not configured — show success anyway for demo
+      form.style.display = 'none';
+      document.getElementById('success-msg').style.display = 'block';
+    });
+}
+
+// Init
+renderCart();
+updateCartBadge();
+</script>
+</body>
+</html>

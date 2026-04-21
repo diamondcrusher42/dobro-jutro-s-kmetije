@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jutro s kmetije — Tržnica</title>
+  <meta name="description" content="Svobodna reja. Dostavljeno k tebi. Bold market stall energy.">
+  <meta property="og:title" content="Jutro s kmetije — Tržnica">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,700;0,9..144,900;1,9..144,700;1,9..144,900&family=DM+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --yellow: #F9C800;
+      --yellow-dk: #D9A800;
+      --green-dk: #1A3D1F;
+      --green: #2E7D32;
+      --white: #FFFFFF;
+      --cream: #FEFBF0;
+      --black: #0F0F0F;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; color: var(--green-dk); background: var(--cream); }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+
+    /* NAV */
+    .nav { background: var(--green-dk); padding: 1rem 1.5rem; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
+    .nav-brand { font-family: 'Fraunces', serif; color: var(--yellow); font-size: 1.25rem; font-style: italic; }
+    .nav-links { display: flex; gap: 1.75rem; align-items: center; }
+    .nav-links a { color: rgba(255,255,255,.85); font-size: .9rem; font-weight: 500; transition: color .15s; }
+    .nav-links a:hover { color: var(--yellow); }
+    .nav-links .nav-cta { background: var(--yellow); color: var(--green-dk); padding: .4rem 1rem; border-radius: 4px; font-weight: 800; }
+    .nav-toggle { display: none; }
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .nav-hamburger span { display: block; width: 24px; height: 2px; background: #fff; }
+    @media (max-width: 700px) {
+      .nav-hamburger { display: flex; }
+      .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--green-dk); flex-direction: column; align-items: flex-start; padding: .75rem 1.5rem 1.5rem; gap: .25rem; }
+      .nav-links a { width: 100%; padding: .6rem 0; }
+      .nav-toggle:checked ~ .nav-links { display: flex; }
+    }
+    @media (min-width: 701px) { .nav-hamburger { display: none; } .nav-links { display: flex !important; } }
+
+    /* HERO */
+    .hero { background: var(--yellow); padding: 4rem 1.5rem 3rem; overflow: hidden; position: relative; }
+    .hero-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr auto; gap: 2rem; align-items: center; }
+    @media (max-width: 700px) { .hero-inner { grid-template-columns: 1fr; } }
+    .hero-badge {
+      display: inline-block;
+      background: var(--green-dk);
+      color: var(--yellow);
+      font-size: .8rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      padding: .35rem .9rem;
+      border-radius: 2px;
+      margin-bottom: 1.25rem;
+      transform: rotate(-1.5deg);
+      display: inline-block;
+    }
+    .hero h1 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(3.5rem, 9vw, 7.5rem);
+      font-weight: 900;
+      color: var(--green-dk);
+      line-height: .9;
+      letter-spacing: -.03em;
+      margin-bottom: 1rem;
+    }
+    .hero h1 em { font-style: italic; color: var(--green-dk); }
+    .hero-tagline { font-size: 1.1rem; font-weight: 500; color: var(--green-dk); max-width: 42ch; margin-bottom: 2rem; opacity: .8; }
+    .btn-market { display: inline-block; background: var(--green-dk); color: var(--yellow); font-weight: 800; font-size: 1rem; padding: 1rem 2.25rem; border-radius: 4px; border: 3px solid var(--green-dk); transition: all .15s; text-transform: uppercase; letter-spacing: .05em; }
+    .btn-market:hover { background: transparent; color: var(--green-dk); }
+    .btn-market.outline { background: transparent; color: var(--green-dk); border-color: var(--green-dk); }
+    .btn-market.outline:hover { background: var(--green-dk); color: var(--yellow); }
+    .hero-egg { font-size: clamp(6rem, 15vw, 12rem); transform: rotate(15deg); line-height: 1; user-select: none; }
+
+    /* TICKER */
+    .ticker { background: var(--green-dk); color: var(--yellow); padding: .6rem 0; overflow: hidden; white-space: nowrap; font-weight: 700; font-size: .85rem; letter-spacing: .08em; text-transform: uppercase; }
+    .ticker-inner { display: inline-flex; gap: 3rem; animation: ticker 18s linear infinite; }
+    @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* PRODUCTS */
+    .section { padding: 4rem 1.5rem; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .section-header { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem; }
+    .section-title { font-family: 'Fraunces', serif; font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 900; line-height: 1; }
+    .section-title em { font-style: italic; }
+
+    .market-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.25rem; }
+    .market-card { background: var(--white); border: 2px solid var(--green-dk); border-radius: 6px; overflow: hidden; position: relative; transition: transform .15s, box-shadow .15s; }
+    .market-card:hover { transform: rotate(-.5deg) translateY(-4px); box-shadow: 6px 6px 0 var(--green-dk); }
+    .card-img { background: linear-gradient(135deg, #2E7D32, #1A3D1F); aspect-ratio: 4/3; display: flex; align-items: center; justify-content: center; font-size: 4rem; position: relative; }
+    .fresh-badge {
+      position: absolute;
+      top: .75rem;
+      right: .75rem;
+      background: var(--yellow);
+      color: var(--green-dk);
+      font-size: .7rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      padding: .3rem .6rem;
+      border-radius: 2px;
+      transform: rotate(2deg);
+      border: 1.5px solid var(--green-dk);
+    }
+    .card-body { padding: 1.25rem; }
+    .card-title { font-family: 'Fraunces', serif; font-size: 1.4rem; font-weight: 700; margin-bottom: .3rem; }
+    .card-price { font-size: 1.5rem; font-weight: 800; color: var(--green); margin-bottom: .5rem; }
+    .card-desc { font-size: .88rem; color: #555; line-height: 1.55; margin-bottom: 1rem; }
+    .card-btn { width: 100%; padding: .7rem; background: var(--green-dk); color: var(--yellow); border: none; font-family: 'DM Sans', sans-serif; font-weight: 800; font-size: .9rem; text-transform: uppercase; letter-spacing: .05em; border-radius: 4px; cursor: pointer; transition: background .15s; }
+    .card-btn:hover { background: var(--green); }
+
+    /* HOW IT WORKS */
+    .steps-section { background: var(--green-dk); color: var(--white); padding: 4rem 1.5rem; }
+    .steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; max-width: 900px; margin: 0 auto; }
+    @media (max-width: 600px) { .steps-grid { grid-template-columns: 1fr; } }
+    .step-card { text-align: center; }
+    .step-circle {
+      width: 64px; height: 64px;
+      background: var(--yellow);
+      color: var(--green-dk);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Fraunces', serif;
+      font-size: 1.8rem;
+      font-weight: 900;
+      margin: 0 auto 1rem;
+    }
+    .step-icon-big { font-size: 2rem; margin-bottom: .5rem; }
+    .step-name { font-family: 'Fraunces', serif; font-size: 1.3rem; font-weight: 700; margin-bottom: .4rem; color: var(--yellow); }
+    .step-desc { font-size: .88rem; color: rgba(255,255,255,.75); }
+
+    /* TESTIMONIALS */
+    .testi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
+    .testi-card {
+      background: var(--yellow);
+      border: 2px solid var(--green-dk);
+      border-radius: 6px;
+      padding: 1.75rem;
+      position: relative;
+    }
+    .testi-card::before { content: '"'; font-family: 'Fraunces', serif; font-size: 5rem; color: var(--green-dk); opacity: .2; position: absolute; top: -.5rem; left: 1rem; line-height: 1; }
+    .testi-text { font-size: 1rem; font-weight: 500; color: var(--green-dk); margin-bottom: .75rem; font-style: italic; line-height: 1.6; position: relative; z-index: 1; }
+    .testi-name { font-size: .82rem; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; color: var(--green-dk); }
+
+    /* CTA */
+    .cta-section { background: var(--green-dk); text-align: center; padding: 5rem 1.5rem; }
+    .cta-section h2 { font-family: 'Fraunces', serif; font-size: clamp(2rem, 5vw, 3.5rem); color: var(--yellow); margin-bottom: 1rem; }
+    .cta-section p { color: rgba(255,255,255,.7); margin-bottom: 2rem; font-size: 1.05rem; }
+
+    /* FOOTER */
+    .footer { background: #0C2210; color: rgba(255,255,255,.65); padding: 3rem 1.5rem 2rem; }
+    .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 2rem; margin-bottom: 2rem; }
+    .footer-brand { font-family: 'Fraunces', serif; color: var(--yellow); font-size: 1.3rem; font-style: italic; margin-bottom: .5rem; }
+    .footer h4 { font-size: .75rem; text-transform: uppercase; letter-spacing: .1em; color: rgba(255,255,255,.4); margin-bottom: .75rem; }
+    .footer ul li { margin-bottom: .4rem; font-size: .88rem; }
+    .footer ul li a:hover { color: var(--yellow); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,.1); padding-top: 1.25rem; display: flex; justify-content: space-between; font-size: .78rem; flex-wrap: wrap; gap: .5rem; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-brand">Jutro s kmetije</div>
+  <input type="checkbox" id="nav-toggle" class="nav-toggle">
+  <label for="nav-toggle" class="nav-hamburger"><span></span><span></span><span></span></label>
+  <ul class="nav-links">
+    <li><a href="../index.html">Domov</a></li>
+    <li><a href="../shop.html">Trgovina</a></li>
+    <li><a href="../about.html">O nas</a></li>
+    <li><a href="../preorder.html" class="nav-cta">Naroči</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-badge">🥚 Danes sveže</div>
+      <h1>Jutro<br><em>s kmetije</em></h1>
+      <p class="hero-tagline">Svobodna reja. Dostavljeno k tebi. Vsak torek in petek.</p>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+        <a href="../preorder.html" class="btn-market">Naroči dostavo</a>
+        <a href="../about.html" class="btn-market outline">Spoznaj nas</a>
+      </div>
+    </div>
+    <div class="hero-egg" aria-hidden="true">🥚</div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span>Pobrano zjutraj</span><span>·</span>
+    <span>500 kokoši na prostem</span><span>·</span>
+    <span>Brez kemikalij</span><span>·</span>
+    <span>Dostava tor + pet</span><span>·</span>
+    <span>15.000m² pašnika</span><span>·</span>
+    <span>Plačilo ob dostavi</span><span>·</span>
+    <span>Pobrano zjutraj</span><span>·</span>
+    <span>500 kokoši na prostem</span><span>·</span>
+    <span>Brez kemikalij</span><span>·</span>
+    <span>Dostava tor + pet</span><span>·</span>
+    <span>15.000m² pašnika</span><span>·</span>
+    <span>Plačilo ob dostavi</span><span>·</span>
+  </div>
+</div>
+
+<!-- PRODUCTS -->
+<section class="section" style="background:var(--cream);">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">Danes <em>sveže</em><br>za vas</h2>
+      <a href="../shop.html" style="font-weight:700;font-size:.9rem;border-bottom:2px solid var(--green-dk);padding-bottom:2px;">Vse →</a>
+    </div>
+    <div class="market-grid">
+      <div class="market-card">
+        <div class="card-img">
+          <span>🥚</span>
+          <span class="fresh-badge">Danes sveže</span>
+        </div>
+        <div class="card-body">
+          <div class="card-title">Jajca 30-pack</div>
+          <div class="card-price">€13.50</div>
+          <p class="card-desc">Rumenjak oranžen kot sonce. Kokoši na prostem, brez kemikalij.</p>
+          <button class="card-btn" onclick="window.location='../shop.html'">Naroči →</button>
+        </div>
+      </div>
+      <div class="market-card">
+        <div class="card-img"><span>🥚</span></div>
+        <div class="card-body">
+          <div class="card-title">Jajca 15-pack</div>
+          <div class="card-price">€7.50</div>
+          <p class="card-desc">Manjši paket. Enaka kakovost, enaka svežina.</p>
+          <button class="card-btn" onclick="window.location='../shop.html'">Naroči →</button>
+        </div>
+      </div>
+      <div class="market-card">
+        <div class="card-img">
+          <span>🥦</span>
+          <span class="fresh-badge">Sezonsko</span>
+        </div>
+        <div class="card-body">
+          <div class="card-title">Zelenjavna škatla</div>
+          <div class="card-price">€18 <small style="font-size:.9rem;font-weight:400;color:#777;">/ teden</small></div>
+          <p class="card-desc">Kar zraste ta teden. Ni hladilne verige.</p>
+          <button class="card-btn" onclick="window.location='../shop.html'">Naroči →</button>
+        </div>
+      </div>
+      <div class="market-card">
+        <div class="card-img"><span>🌿</span></div>
+        <div class="card-body">
+          <div class="card-title">Zelišča — šopek</div>
+          <div class="card-price">€6</div>
+          <p class="card-desc">Bazilika, timijan, peteršilj. Porezano tik pred dostavo.</p>
+          <button class="card-btn" onclick="window.location='../shop.html'">Naroči →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="steps-section">
+  <div class="container">
+    <h2 style="font-family:'Fraunces',serif;color:var(--yellow);text-align:center;font-size:clamp(1.8rem,4vw,2.8rem);margin-bottom:2.5rem;">Tri koraki do svežine</h2>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-circle">1</div>
+        <div class="step-icon-big">📋</div>
+        <div class="step-name">Naroči</div>
+        <p class="step-desc">Izberite produkte in sporočite naslov. Brez naročnine.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-circle">2</div>
+        <div class="step-icon-big">📦</div>
+        <div class="step-name">Pakujemo</div>
+        <p class="step-desc">Zjutraj poberemo, spakiramo, označimo vaš paket.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-circle">3</div>
+        <div class="step-icon-big">🚐</div>
+        <div class="step-name">Dostavimo</div>
+        <p class="step-desc">Dostava do 13:00. Plačilo ob dostavi — ni predplačil.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section" style="background:var(--cream);">
+  <div class="container">
+    <h2 class="section-title" style="margin-bottom:2rem;text-align:center;">Kar pravijo <em>stranke</em></h2>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <p class="testi-text">Rumenjak je res oranžen — nič takega nisem videla v supermarketu. Otroci so navdušeni!</p>
+        <div class="testi-name">— Maja K., Ljubljana</div>
+      </div>
+      <div class="testi-card" style="transform:rotate(.8deg);">
+        <p class="testi-text">Naročamo vsak teden. Zelenjavna škatla je vedno polna presenečenj. Vse sveže, vse dobro.</p>
+        <div class="testi-name">— Tomaž P., Domžale</div>
+      </div>
+      <div class="testi-card" style="transform:rotate(-.5deg);">
+        <p class="testi-text">Kot kuhar cenim kakovost. Ta jajca se vidijo na krožniku — barva, okus. Priporočam.</p>
+        <div class="testi-name">— Chef Rok, Restavracija Izvir</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <h2>Naroči prvo dostavo</h2>
+    <p>Pridružite se 40+ gospodinjstev, ki tedensko prejemajo svežino s kmetije.</p>
+    <a href="../preorder.html" class="btn-market" style="display:inline-block;font-size:1.1rem;padding:1rem 2.5rem;">Naroči zdaj →</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">Jutro s kmetije</div>
+        <p style="font-size:.85rem;">Svobodna reja · Slovenija</p>
+        <p style="font-size:.82rem;margin-top:.5rem;">041 000 000 · info@jutroszkmetije.si</p>
+      </div>
+      <div>
+        <h4>Strani</h4>
+        <ul>
+          <li><a href="../index.html">Domov</a></li>
+          <li><a href="../shop.html">Trgovina</a></li>
+          <li><a href="../about.html">O nas</a></li>
+          <li><a href="../preorder.html">Naroči</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Sledi nam</h4>
+        <ul>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Facebook</a></li>
+          <li><a href="#">TikTok</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Jutro s kmetije</span>
+      <span>🇸🇮 Slovenija</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

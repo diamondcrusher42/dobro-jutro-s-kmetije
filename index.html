@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jutro s kmetije — Sveža jajca, dostavljeno k tebi</title>
+  <meta name="description" content="Svobodna reja. Sveža jajca, pobrana danes zjutraj, dostavljena k vam. Naročite prvi dostavo.">
+  <meta property="og:title" content="Jutro s kmetije — Sveža jajca, dostavljeno k tebi">
+  <meta property="og:description" content="Svobodna reja. Sveža jajca, pobrana danes zjutraj, dostavljena k vam.">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;1,9..144,400&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="index.html" class="nav-brand">Jutro s kmetije<span>Svobodna reja · Slovenija</span></a>
+  <input type="checkbox" id="nav-toggle" class="nav-toggle">
+  <label for="nav-toggle" class="nav-hamburger" aria-label="Meni">
+    <span></span><span></span><span></span>
+  </label>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">Domov</a></li>
+    <li><a href="shop.html">Trgovina</a></li>
+    <li><a href="about.html">O nas</a></li>
+    <li><a href="shop.html" class="cart-badge">Košarica <span class="badge-count" id="cart-count">0</span></a></li>
+    <li><a href="preorder.html" class="btn-nav">Naroči</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container hero-inner">
+    <p class="hero-label">🥚 Sveže z domače kmetije</p>
+    <h1>Jutro s kmetije</h1>
+    <p class="hero-tagline">Svobodna reja. Dostavljeno k tebi.</p>
+    <p style="color:rgba(255,255,255,.7);max-width:52ch;margin-bottom:2.5rem;font-size:1.05rem;">
+      Jajca, pobrana danes zjutraj. Pri vas do kosila. Brez kemikalij, brez posrednikov — samo narava in skrb.
+    </p>
+    <div class="hero-actions">
+      <a href="preorder.html" class="btn btn-primary">Naroči prvi dostavo</a>
+      <a href="about.html" class="btn btn-outline">Spoznaj kmetijo</a>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL PROOF STRIP -->
+<div style="background:var(--yellow);padding:.85rem 1.5rem;text-align:center;">
+  <p style="font-size:.95rem;font-weight:700;color:var(--green-dk);margin:0;">
+    🐔 &nbsp;500 kokoši na prostem &nbsp;·&nbsp; 🌿 15.000m² pašnika &nbsp;·&nbsp; 📦 Dostava tor + pet
+  </p>
+</div>
+
+<!-- PRODUCTS -->
+<section class="section bg-offwhite">
+  <div class="container">
+    <p class="section-label text-center">Naše ponudba</p>
+    <h2 class="section-title text-center">Kar rastemo, vam dostavimo</h2>
+    <p class="section-sub text-center">Vse pridelano na kmetiji — brez vmesnih rok, brez hladilnih verig.</p>
+    <div class="cards-grid">
+      <!-- Card 1 -->
+      <div class="card">
+        <div class="photo-placeholder">🥚</div>
+        <div class="card-body">
+          <span class="card-tag">Bestseller</span>
+          <h3 class="card-title">Sveža jajca</h3>
+          <p class="card-desc">Kokoši se pasejo zunaj vsak dan. Rumenjak globoko oranžen — barva prostosti in dobre hrane.</p>
+          <div class="card-price">€7.50 <small>/ 15 kom</small></div>
+          <a href="shop.html" class="btn btn-green" style="display:block;text-align:center;">Izberi paket</a>
+        </div>
+      </div>
+      <!-- Card 2 -->
+      <div class="card">
+        <div class="photo-placeholder">🥦</div>
+        <div class="card-body">
+          <span class="card-tag">Sezonsko</span>
+          <h3 class="card-title">Zelenjavna škatla</h3>
+          <p class="card-desc">Tisto, kar zraste ta teden. Solate, paradižnik, bučke, korenček — vse ekološko, vse lokalno.</p>
+          <div class="card-price">€18 <small>/ teden</small></div>
+          <a href="shop.html" class="btn btn-green" style="display:block;text-align:center;">Naroči dostavo</a>
+        </div>
+      </div>
+      <!-- Card 3 -->
+      <div class="card">
+        <div class="photo-placeholder">🌿</div>
+        <div class="card-body">
+          <span class="card-tag">Sveže</span>
+          <h3 class="card-title">Zelišča</h3>
+          <p class="card-desc">Bazilika, timijan, peteršilj, meta. Pakiran svež, porezano tik pred dostavo.</p>
+          <div class="card-price">€6 <small>/ šopek</small></div>
+          <a href="shop.html" class="btn btn-green" style="display:block;text-align:center;">Dodaj k naročilu</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section bg-white">
+  <div class="container">
+    <p class="section-label text-center">Kako deluje</p>
+    <h2 class="section-title text-center">Tri koraki do sveže dostave</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-icon">📋</div>
+        <div class="step-title">Naroči</div>
+        <p style="color:var(--gray);font-size:.9rem;">Izberite produkte, dan dostave in pustite kontaktne podatke. Brez kompleksnih računov ali naročnin.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-icon">📦</div>
+        <div class="step-title">Pakujemo</div>
+        <p style="color:var(--gray);font-size:.9rem;">Zjutraj poberemo jajca, porežemo zelišča in spakiramo škatlo — vse isti dan.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-icon">🚐</div>
+        <div class="step-title">Dostavimo</div>
+        <p style="color:var(--gray);font-size:.9rem;">Dostava na vaš naslov do 13:00. Plačilo ob dostavi — ni predplačil.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="section bg-offwhite">
+  <div class="container two-col">
+    <div>
+      <p class="section-label">Zakaj Jutro s kmetije</p>
+      <h2 class="section-title">Jajca so toliko boljša, ko veste, od kod prihajajo</h2>
+      <p style="color:var(--gray);margin-bottom:1.75rem;">Supermarketska jajca so stara 3–4 tedne. Naša so pobrana zjutraj in pri vas isti dan. Kokoši se pasejo na 15.000m² brez kemikalij, krmljene pa so z larvi iz naše BSF farme.</p>
+      <div class="values">
+        <div class="value-chip">🌿 Svobodna reja</div>
+        <div class="value-chip">🏠 Lokalno</div>
+        <div class="value-chip">🚫 Brez kemikalij</div>
+        <div class="value-chip">♻️ Trajnostno</div>
+        <div class="value-chip">🥚 Pobrano danes</div>
+      </div>
+    </div>
+    <div>
+      <div class="photo-placeholder tall">🐔</div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section bg-white">
+  <div class="container">
+    <p class="section-label text-center">Kar pravijo stranke</p>
+    <h2 class="section-title text-center">Resnični naročniki</h2>
+    <div class="testimonials-grid" style="margin-top:2.5rem;">
+      <div class="testimonial">
+        <blockquote>"Rumenjak je res oranžen — nič takega nisem videla v supermarketu. Otroci so navdušeni."</blockquote>
+        <cite>— Maja K., Ljubljana</cite>
+      </div>
+      <div class="testimonial">
+        <blockquote>"Naročamo vsak teden. Zelenjavna škatla je vedno polna presenečenj, vse je sveže in polno okusa."</blockquote>
+        <cite>— Tomaž P., Domžale</cite>
+      </div>
+      <div class="testimonial">
+        <blockquote>"Kot kuhar cenim kakovost. Ta jajca se vidijo na krožniku — barva, konsistenca, okus. Priporočam."</blockquote>
+        <cite>— Chef Rok, restavracija Izvir</cite>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<div class="cta-banner">
+  <div class="container">
+    <h2>Pripravljeni na prvo dostavo?</h2>
+    <p>Pridružite se že 40+ gospodinjstvom in restavracijam, ki tedensko prejemajo svežino naravnost s kmetije.</p>
+    <a href="preorder.html" class="btn btn-primary">Naroči prvi dostavo →</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">Jutro s kmetije</div>
+        <p style="font-size:.9rem;margin-bottom:1rem;">Svobodna reja. Dostavljeno k tebi.</p>
+        <p style="font-size:.85rem;">📍 Slovenija, dostava v okolici 30km</p>
+        <p style="font-size:.85rem;">📞 <a href="tel:+38641000000">041 000 000</a></p>
+        <p style="font-size:.85rem;">✉️ <a href="mailto:info@jutroszkmetije.si">info@jutroszkmetije.si</a></p>
+      </div>
+      <div>
+        <h4>Strani</h4>
+        <ul>
+          <li><a href="index.html">Domov</a></li>
+          <li><a href="shop.html">Trgovina</a></li>
+          <li><a href="about.html">O nas</a></li>
+          <li><a href="preorder.html">Naroči</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Sledite nam</h4>
+        <ul>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Facebook</a></li>
+          <li><a href="#">TikTok</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Novice s kmetije</h4>
+        <p style="font-size:.85rem;margin-bottom:.75rem;">Vsak teden kratka novica: kaj raste, kaj smo se naučili, kdaj dostavljamo.</p>
+        <form class="newsletter-form" onsubmit="event.preventDefault();this.innerHTML='<p style=color:var(--yellow);font-size:.9rem;>Hvala! Javimo se. 🥚</p>'">
+          <input type="email" placeholder="vaš@email.si" required>
+          <button type="submit">Pošlji</button>
+        </form>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Jutro s kmetije. Vse pravice pridržane.</span>
+      <span>Z ljubeznijo narejen v Sloveniji 🇸🇮</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Cart count from localStorage
+  function updateCartBadge() {
+    const cart = JSON.parse(localStorage.getItem('jsk_cart') || '[]');
+    const total = cart.reduce((s, i) => s + i.qty, 0);
+    document.getElementById('cart-count').textContent = total;
+  }
+  updateCartBadge();
+</script>
+</body>
+</html>

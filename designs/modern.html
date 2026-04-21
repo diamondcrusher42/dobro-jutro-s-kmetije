@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jutro s kmetije — Modern</title>
+  <meta name="description" content="Premium free-range eggs delivered. Clean SaaS-style design for HoReCa and household delivery.">
+  <meta property="og:title" content="Jutro s kmetije — Modern">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --green-dk: #1A3D1F;
+      --green: #2E7D32;
+      --green-lt: #E8F5E9;
+      --yellow: #F9C800;
+      --white: #FFFFFF;
+      --bg: #F6F8F6;
+      --card-bg: #FFFFFF;
+      --text: #1C2B1E;
+      --text-lt: #6B7280;
+      --border: #E5E7EB;
+      --shadow: 0 2px 16px rgba(26,61,31,.08);
+      --shadow-hover: 0 8px 32px rgba(26,61,31,.14);
+      --radius: 12px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); line-height: 1.65; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+    p { max-width: 68ch; }
+
+    /* NAV */
+    .nav { background: rgba(255,255,255,.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: .9rem 2rem; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
+    .nav-brand { font-family: 'Fraunces', serif; font-size: 1.15rem; color: var(--green-dk); }
+    .nav-brand span { font-family: 'DM Sans', sans-serif; font-size: .75rem; color: var(--text-lt); display: block; font-weight: 400; }
+    .nav-links { display: flex; gap: 1.75rem; align-items: center; }
+    .nav-links a { font-size: .875rem; font-weight: 500; color: var(--text-lt); transition: color .15s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--green-dk); }
+    .nav-cta { background: var(--green-dk); color: var(--white) !important; padding: .45rem 1.1rem; border-radius: 8px; font-weight: 700 !important; }
+    .nav-cta:hover { background: var(--green) !important; }
+    .nav-toggle { display: none; }
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--text); border-radius: 2px; }
+    @media (max-width: 700px) {
+      .nav-hamburger { display: flex; }
+      .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: #fff; flex-direction: column; align-items: flex-start; padding: 1rem 2rem 1.5rem; gap: .25rem; border-bottom: 1px solid var(--border); box-shadow: 0 8px 24px rgba(0,0,0,.08); }
+      .nav-links a { width: 100%; padding: .6rem 0; }
+      .nav-toggle:checked ~ .nav-links { display: flex; }
+    }
+    @media (min-width: 701px) { .nav-hamburger { display: none; } .nav-links { display: flex !important; } }
+
+    /* HERO */
+    .hero { background: linear-gradient(135deg, var(--green-dk) 0%, #2a5c30 60%, var(--green) 100%); padding: 6rem 2rem 5rem; position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; top: -50%; right: -10%; width: 600px; height: 600px; background: radial-gradient(circle, rgba(249,200,0,.12) 0%, transparent 70%); border-radius: 50%; }
+    .hero-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; }
+    @media (max-width: 800px) { .hero-inner { grid-template-columns: 1fr; } }
+    .hero-eyebrow { display: inline-flex; align-items: center; gap: .5rem; background: rgba(249,200,0,.15); border: 1px solid rgba(249,200,0,.3); border-radius: 999px; padding: .3rem .9rem; font-size: .8rem; color: var(--yellow); font-weight: 600; margin-bottom: 1.5rem; }
+    .hero h1 { font-family: 'Fraunces', serif; font-size: clamp(2.2rem, 5vw, 3.8rem); color: var(--white); line-height: 1.1; margin-bottom: 1.25rem; }
+    .hero h1 strong { color: var(--yellow); }
+    .hero-sub { color: rgba(255,255,255,.7); font-size: 1.05rem; margin-bottom: 2.25rem; max-width: 46ch; }
+    .hero-actions { display: flex; gap: .75rem; flex-wrap: wrap; }
+    .btn-hero { display: inline-block; padding: .85rem 1.75rem; border-radius: 10px; font-weight: 700; font-size: .95rem; transition: all .15s; }
+    .btn-hero.primary { background: var(--yellow); color: var(--green-dk); }
+    .btn-hero.primary:hover { background: #e6b800; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(249,200,0,.4); }
+    .btn-hero.ghost { border: 1.5px solid rgba(255,255,255,.35); color: var(--white); }
+    .btn-hero.ghost:hover { background: rgba(255,255,255,.1); }
+
+    /* HERO STATS CARD */
+    .stats-card { background: rgba(255,255,255,.08); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,.15); border-radius: 16px; padding: 2rem; }
+    .stats-card h3 { font-family: 'Fraunces', serif; color: var(--yellow); font-size: 1rem; margin-bottom: 1.25rem; font-weight: 400; }
+    .stat-row { display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,.1); padding: .7rem 0; }
+    .stat-row:last-child { border-bottom: none; }
+    .stat-key { font-size: .85rem; color: rgba(255,255,255,.6); }
+    .stat-val { font-size: .9rem; font-weight: 700; color: var(--white); }
+    .stat-pill { background: rgba(249,200,0,.2); color: var(--yellow); border-radius: 999px; padding: .1rem .5rem; font-size: .75rem; font-weight: 700; }
+
+    /* SECTION */
+    .section { padding: 5rem 2rem; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .section-label { font-size: .75rem; text-transform: uppercase; letter-spacing: .14em; color: var(--green); font-weight: 700; margin-bottom: .5rem; }
+    .section-title { font-family: 'Fraunces', serif; font-size: clamp(1.7rem, 3.5vw, 2.5rem); margin-bottom: .75rem; }
+    .section-sub { color: var(--text-lt); font-size: .95rem; margin-bottom: 2.5rem; }
+
+    /* PRICING CARDS */
+    .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem; }
+    .price-card { background: var(--card-bg); border: 1.5px solid var(--border); border-radius: var(--radius); padding: 1.75rem; transition: all .2s; position: relative; overflow: hidden; }
+    .price-card:hover { border-color: var(--green); box-shadow: var(--shadow-hover); transform: translateY(-3px); }
+    .price-card.featured { border-color: var(--green); background: var(--green-lt); }
+    .price-card.featured::before { content: 'Priljubljeno'; position: absolute; top: 1rem; right: -1.5rem; background: var(--green); color: #fff; font-size: .7rem; font-weight: 700; padding: .25rem 2rem; transform: rotate(30deg); letter-spacing: .05em; }
+    .price-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+    .price-name { font-weight: 700; font-size: 1.05rem; margin-bottom: .25rem; }
+    .price-amount { font-family: 'Fraunces', serif; font-size: 2.2rem; color: var(--green-dk); margin-bottom: .2rem; }
+    .price-per { font-size: .82rem; color: var(--text-lt); margin-bottom: 1.25rem; }
+    .price-features { display: flex; flex-direction: column; gap: .6rem; margin-bottom: 1.5rem; }
+    .price-feature { display: flex; align-items: center; gap: .5rem; font-size: .88rem; }
+    .price-feature::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; }
+    .price-btn { width: 100%; padding: .75rem; background: var(--green-dk); color: #fff; border: none; border-radius: 8px; font-family: 'DM Sans', sans-serif; font-weight: 700; cursor: pointer; font-size: .9rem; transition: background .15s; }
+    .price-btn:hover { background: var(--green); }
+    .price-btn.outline { background: transparent; border: 1.5px solid var(--green-dk); color: var(--green-dk); }
+    .price-btn.outline:hover { background: var(--green-dk); color: #fff; }
+
+    /* HOW IT WORKS */
+    .how-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    @media (max-width: 650px) { .how-grid { grid-template-columns: 1fr; } }
+    .how-card { background: var(--card-bg); border-radius: var(--radius); padding: 1.75rem; box-shadow: var(--shadow); border-top: 3px solid var(--green); }
+    .how-num { font-family: 'Fraunces', serif; font-size: 2.5rem; color: var(--green-lt); line-height: 1; margin-bottom: .25rem; }
+    .how-icon { font-size: 1.75rem; margin-bottom: .75rem; }
+    .how-title { font-weight: 700; font-size: 1rem; margin-bottom: .4rem; }
+    .how-desc { font-size: .88rem; color: var(--text-lt); line-height: 1.6; }
+
+    /* HORECA STRIP */
+    .horeca { background: var(--green-dk); color: var(--white); padding: 3.5rem 2rem; }
+    .horeca-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+    @media (max-width: 700px) { .horeca-inner { grid-template-columns: 1fr; } }
+    .horeca-tag { background: rgba(249,200,0,.15); color: var(--yellow); font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .12em; padding: .3rem .8rem; border-radius: 999px; display: inline-block; margin-bottom: 1rem; }
+    .horeca h2 { font-family: 'Fraunces', serif; font-size: clamp(1.6rem, 3.5vw, 2.2rem); color: var(--white); margin-bottom: 1rem; }
+    .horeca p { color: rgba(255,255,255,.7); font-size: .95rem; margin-bottom: 1.5rem; max-width: 44ch; }
+    .horeca-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .hs { background: rgba(255,255,255,.07); border-radius: 10px; padding: 1.25rem; border: 1px solid rgba(255,255,255,.1); }
+    .hs-num { font-family: 'Fraunces', serif; font-size: 2rem; color: var(--yellow); }
+    .hs-label { font-size: .8rem; color: rgba(255,255,255,.6); }
+
+    /* TESTIMONIALS */
+    .testi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; }
+    .testi { background: var(--card-bg); border-radius: var(--radius); padding: 1.75rem; box-shadow: var(--shadow); border-left: 3px solid var(--yellow); }
+    .testi-stars { color: var(--yellow); font-size: 1rem; margin-bottom: .75rem; }
+    .testi-text { font-size: .92rem; color: var(--text); font-style: italic; margin-bottom: 1rem; line-height: 1.65; }
+    .testi-author { font-size: .82rem; font-weight: 700; color: var(--green); }
+
+    /* CTA */
+    .cta { background: linear-gradient(135deg, var(--green-dk), var(--green)); color: var(--white); text-align: center; padding: 5rem 2rem; }
+    .cta h2 { font-family: 'Fraunces', serif; font-size: clamp(1.8rem, 4vw, 3rem); color: var(--yellow); margin-bottom: 1rem; }
+    .cta p { color: rgba(255,255,255,.75); margin: 0 auto 2rem; max-width: 50ch; }
+
+    /* FOOTER */
+    .footer { background: var(--green-dk); color: rgba(255,255,255,.65); padding: 3.5rem 2rem 2rem; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 2.5rem; max-width: 1100px; margin: 0 auto 2.5rem; }
+    @media (max-width: 800px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 500px) { .footer-grid { grid-template-columns: 1fr; } }
+    .footer-brand { font-family: 'Fraunces', serif; color: var(--yellow); font-size: 1.25rem; margin-bottom: .5rem; }
+    .footer h4 { font-size: .75rem; text-transform: uppercase; letter-spacing: .12em; color: rgba(255,255,255,.4); margin-bottom: .75rem; }
+    .footer ul li { margin-bottom: .4rem; font-size: .875rem; }
+    .footer ul li a:hover { color: var(--yellow); }
+    .newsletter-input { display: flex; gap: .5rem; }
+    .newsletter-input input { flex: 1; padding: .6rem .9rem; border: 1px solid rgba(255,255,255,.15); border-radius: 8px; background: rgba(255,255,255,.08); color: #fff; font-family: 'DM Sans',sans-serif; font-size: .875rem; }
+    .newsletter-input input::placeholder { color: rgba(255,255,255,.4); }
+    .newsletter-input button { padding: .6rem 1rem; background: var(--yellow); color: var(--green-dk); border: none; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: .85rem; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,.1); padding-top: 1.5rem; display: flex; justify-content: space-between; font-size: .78rem; flex-wrap: wrap; gap: .5rem; max-width: 1100px; margin: 0 auto; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-brand">Jutro s kmetije<span>Svobodna reja · Slovenija</span></div>
+  <input type="checkbox" id="nav-toggle" class="nav-toggle">
+  <label for="nav-toggle" class="nav-hamburger"><span></span><span></span><span></span></label>
+  <ul class="nav-links">
+    <li><a href="../index.html">Domov</a></li>
+    <li><a href="../shop.html">Trgovina</a></li>
+    <li><a href="../about.html">O nas</a></li>
+    <li><a href="../preorder.html" class="nav-cta">Naroči</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">🥚 Pobrano danes zjutraj</div>
+      <h1>Svobodna reja.<br><strong>Dostavljeno k tebi.</strong></h1>
+      <p class="hero-sub">Jajca, zelenjavna škatla in zelišča — pridelano na 15.000m² pašnika, dostavljeno isti dan. Za gospodinjstva in restavracije.</p>
+      <div class="hero-actions">
+        <a href="../preorder.html" class="btn-hero primary">Začni naročati</a>
+        <a href="../about.html" class="btn-hero ghost">Spoznaj kmetijo</a>
+      </div>
+    </div>
+    <div>
+      <div class="stats-card">
+        <h3>Kmetija v številkah</h3>
+        <div class="stat-row"><span class="stat-key">Kokoši na prostem</span><span class="stat-val">500 🐔</span></div>
+        <div class="stat-row"><span class="stat-key">Pašnik</span><span class="stat-val">15.000 m²</span></div>
+        <div class="stat-row"><span class="stat-key">Kemikalije</span><span class="stat-val"><span class="stat-pill">0</span></span></div>
+        <div class="stat-row"><span class="stat-key">Dostava</span><span class="stat-val">Tor + Pet</span></div>
+        <div class="stat-row"><span class="stat-key">Plačilo</span><span class="stat-val">Ob dostavi</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="section" style="background:var(--bg);">
+  <div class="container">
+    <p class="section-label">Cenik</p>
+    <h2 class="section-title">Izberite paket</h2>
+    <p class="section-sub">Vse dostave vsebujejo sveže pridelke isti dan. Brez naročnine — naročite, kdaj hočete.</p>
+    <div class="pricing-grid">
+
+      <div class="price-card">
+        <div class="price-icon">🥚</div>
+        <div class="price-name">Jajca — Small</div>
+        <div class="price-amount">€7.50</div>
+        <div class="price-per">15 kom · €0.50/jajce</div>
+        <div class="price-features">
+          <div class="price-feature">15 svežih jajc</div>
+          <div class="price-feature">Pobrano isti dan</div>
+          <div class="price-feature">Kokoši na prostem</div>
+          <div class="price-feature">Rumenjak globoko oranžen</div>
+        </div>
+        <button class="price-btn outline" onclick="window.location='../shop.html'">Naroči</button>
+      </div>
+
+      <div class="price-card featured">
+        <div class="price-icon">🥚🥚</div>
+        <div class="price-name">Jajca — Family</div>
+        <div class="price-amount">€13.50</div>
+        <div class="price-per">30 kom · €0.45/jajce</div>
+        <div class="price-features">
+          <div class="price-feature">30 svežih jajc</div>
+          <div class="price-feature">Pobrano isti dan</div>
+          <div class="price-feature">Kokoši na prostem</div>
+          <div class="price-feature">Prihranek vs small pack</div>
+        </div>
+        <button class="price-btn" onclick="window.location='../shop.html'">Naroči</button>
+      </div>
+
+      <div class="price-card">
+        <div class="price-icon">🥦</div>
+        <div class="price-name">Zelenjavna škatla</div>
+        <div class="price-amount">€18</div>
+        <div class="price-per">tedenska dostava</div>
+        <div class="price-features">
+          <div class="price-feature">Sezonska zelenjava</div>
+          <div class="price-feature">Brez kemikalij</div>
+          <div class="price-feature">Sestava se menja tedensko</div>
+          <div class="price-feature">Dvotedensko: €10</div>
+        </div>
+        <button class="price-btn outline" onclick="window.location='../shop.html'">Naroči</button>
+      </div>
+
+      <div class="price-card">
+        <div class="price-icon">🌿</div>
+        <div class="price-name">Zelišča</div>
+        <div class="price-amount">€6</div>
+        <div class="price-per">šopek svežih zelišč</div>
+        <div class="price-features">
+          <div class="price-feature">Bazilika, timijan, peteršilj</div>
+          <div class="price-feature">Porezano tik pred dostavo</div>
+          <div class="price-feature">Brez pesticidov</div>
+          <div class="price-feature">Dodaj k kateremu naročilu</div>
+        </div>
+        <button class="price-btn outline" onclick="window.location='../shop.html'">Naroči</button>
+      </div>
+
+    </div>
+    <p style="font-size:.85rem;color:var(--text-lt);text-align:center;margin-top:1.5rem;">💳 Plačilo ob dostavi ali po predračunu. Ni predplačil.</p>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section" style="background:var(--white);">
+  <div class="container">
+    <p class="section-label">Proces</p>
+    <h2 class="section-title">Kako deluje</h2>
+    <div class="how-grid">
+      <div class="how-card">
+        <div class="how-num">01</div>
+        <div class="how-icon">📋</div>
+        <div class="how-title">Naroči online</div>
+        <p class="how-desc">Izberite produkte, dan dostave, pustite kontaktne podatke. Naročilo prejmemo takoj.</p>
+      </div>
+      <div class="how-card">
+        <div class="how-num">02</div>
+        <div class="how-icon">🌅</div>
+        <div class="how-title">Zjutraj poberemo</div>
+        <p class="how-desc">Isti dan poberemo jajca, porežemo zelišča, spakiramo vaš paket z nalepko.</p>
+      </div>
+      <div class="how-card">
+        <div class="how-num">03</div>
+        <div class="how-icon">🚐</div>
+        <div class="how-title">Dostava do 13:00</div>
+        <p class="how-desc">Dostava na vaš naslov. Plačilo ob dostavi — gotovina ali UPN. Brez predplačil.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HORECA -->
+<section class="horeca">
+  <div class="horeca-inner">
+    <div>
+      <span class="horeca-tag">B2B · HoReCa</span>
+      <h2>Za restavracije in kavarnice</h2>
+      <p>Chefs, ki jim je mar za barvo rumenejka in konsistenco beljaka, naročajo pri nas. Dostava po dogovoru, predračun, redna količina.</p>
+      <a href="../preorder.html" class="btn-hero primary" style="display:inline-block;margin-top:.5rem;">Pišite nam →</a>
+    </div>
+    <div class="horeca-stats">
+      <div class="hs"><div class="hs-num">€0.45</div><div class="hs-label">cena/jajce za restavracije</div></div>
+      <div class="hs"><div class="hs-num">4</div><div class="hs-label">restavracije že naročajo</div></div>
+      <div class="hs"><div class="hs-num">2×</div><div class="hs-label">dostava na teden</div></div>
+      <div class="hs"><div class="hs-num">0</div><div class="hs-label">barvil v rumenjaku</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section" style="background:var(--bg);">
+  <div class="container">
+    <p class="section-label">Ocene</p>
+    <h2 class="section-title">Naročniki</h2>
+    <div class="testi-grid" style="margin-top:2rem;">
+      <div class="testi">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Rumenjak je res oranžen — nič takega v supermarketu. Otroci so navdušeni. Naročamo vsak teden."</p>
+        <div class="testi-author">Maja K. · Ljubljana · gospodinjstvo</div>
+      </div>
+      <div class="testi">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Zelenjavna škatla je vedno polna presenečenj. Vse sveže, vse lokalno. Priporočam brez zadržkov."</p>
+        <div class="testi-author">Tomaž P. · Domžale · gospodinjstvo</div>
+      </div>
+      <div class="testi">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Kot kuhar cenim kakovost. Ta jajca se vidijo na krožniku — barva, okus, konsistenca. Naši gostje to opazijo."</p>
+        <div class="testi-author">Chef Rok · Restavracija Izvir · HoReCa</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="container">
+    <h2>Začnite danes</h2>
+    <p>Pridružite se 40+ gospodinjstev in 4 restavracijam, ki tedensko prejmejo svežino s kmetije.</p>
+    <a href="../preorder.html" class="btn-hero primary" style="font-size:1.05rem;">Naroči prvo dostavo →</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand">Jutro s kmetije</div>
+      <p style="font-size:.875rem;margin-bottom:1rem;">Svobodna reja. Dostavljeno k tebi.</p>
+      <p style="font-size:.82rem;">📍 Slovenija · 30km radius</p>
+      <p style="font-size:.82rem;">📞 041 000 000</p>
+      <p style="font-size:.82rem;">✉️ info@jutroszkmetije.si</p>
+    </div>
+    <div>
+      <h4>Strani</h4>
+      <ul>
+        <li><a href="../index.html">Domov</a></li>
+        <li><a href="../shop.html">Trgovina</a></li>
+        <li><a href="../about.html">O nas</a></li>
+        <li><a href="../preorder.html">Naroči</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Sledite nam</h4>
+      <ul>
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">Facebook</a></li>
+        <li><a href="#">TikTok</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Novice</h4>
+      <p style="font-size:.82rem;margin-bottom:.75rem;">Tedenska novica s kmetije.</p>
+      <div class="newsletter-input">
+        <input type="email" placeholder="email@si" oninput="">
+        <button onclick="this.textContent='✓';this.style.background='#ccc'">OK</button>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Jutro s kmetije</span>
+    <span>Slovenija 🇸🇮</span>
+  </div>
+</footer>
+
+</body>
+</html>
