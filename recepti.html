@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recepti iz kmetije — Jutro s kmetije</title>
+  <meta name="description" content="Recepti z domačimi jajci, piščancem in ribami. Od kokošnjaka do krožnika — sveže sestavine, preprosti recepti.">
+  <meta property="og:title" content="Recepti iz kmetije — Jutro s kmetije">
+  <meta property="og:description" content="Recepti z domačimi jajci, piščancem in ribami. Od kokošnjaka do krožnika.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;1,9..144,400&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .recipe-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.75rem;
+      margin-top: 2rem;
+    }
+    .recipe-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .recipe-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(26,61,31,.16);
+    }
+    .recipe-img {
+      background: linear-gradient(135deg, var(--green-dk), var(--green));
+      height: 140px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.5rem;
+    }
+    .recipe-body {
+      padding: 1.5rem;
+    }
+    .recipe-name {
+      font-family: 'Fraunces', serif;
+      font-size: 1.2rem;
+      margin-bottom: .4rem;
+      color: var(--green-dk);
+    }
+    .recipe-meta {
+      font-size: .82rem;
+      color: var(--gray);
+      margin-bottom: 1rem;
+      display: flex;
+      gap: 1rem;
+    }
+    .recipe-meta span {
+      display: flex;
+      align-items: center;
+      gap: .3rem;
+    }
+    .recipe-ingredients {
+      font-size: .88rem;
+      color: var(--gray);
+      margin-bottom: 1.1rem;
+    }
+    .recipe-ingredients ul {
+      list-style: disc;
+      padding-left: 1.2rem;
+      margin-top: .4rem;
+    }
+    .recipe-ingredients ul li {
+      margin-bottom: .2rem;
+    }
+    .recipe-steps {
+      font-size: .88rem;
+      color: var(--green-dk);
+    }
+    .recipe-steps ol {
+      padding-left: 1.2rem;
+      margin-top: .4rem;
+    }
+    .recipe-steps ol li {
+      margin-bottom: .4rem;
+      line-height: 1.55;
+    }
+    .recipe-section-label {
+      font-size: .75rem;
+      text-transform: uppercase;
+      letter-spacing: .15em;
+      font-weight: 700;
+      color: var(--green);
+      margin-bottom: .5rem;
+    }
+    .recipe-section-title {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      color: var(--green-dk);
+      margin-bottom: .5rem;
+    }
+    .meal-section {
+      padding: 3.5rem 1.5rem;
+    }
+    .meal-section:nth-child(odd) {
+      background: var(--offwhite);
+    }
+    .meal-section:nth-child(even) {
+      background: var(--white);
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="index.html" class="nav-brand">Jutro s kmetije<span>Svobodna reja · Slovenija</span></a>
+  <input type="checkbox" id="nav-toggle" class="nav-toggle">
+  <label for="nav-toggle" class="nav-hamburger" aria-label="Meni">
+    <span></span><span></span><span></span>
+  </label>
+  <ul class="nav-links">
+    <li><a href="index.html">Domov</a></li>
+    <li><a href="recepti.html" class="active">Recepti</a></li>
+    <li><a href="shop.html">Trgovina</a></li>
+    <li><a href="about.html">O nas</a></li>
+    <li><a href="shop.html" class="cart-badge">Košarica <span class="badge-count" id="cart-count">0</span></a></li>
+    <li><a href="preorder.html" class="btn-nav">Naroči</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" style="padding:5.5rem 1.5rem 4.5rem;">
+  <div class="container hero-inner">
+    <p class="hero-label" style="color:var(--yellow);">Kuhinja s kmetije</p>
+    <h1 style="color:var(--white);">Recepti iz kmetije</h1>
+    <p class="hero-tagline">Od kokošnjaka do krožnika.</p>
+    <p style="color:rgba(255,255,255,.7);max-width:50ch;margin-bottom:0;font-size:1.05rem;">
+      Sveže sestavine zahtevajo preproste recepte. Nič kompleksnega — samo dobra hrana, pripravljena z razumom.
+    </p>
+  </div>
+</section>
+
+<!-- ZAJTRK -->
+<section class="meal-section">
+  <div class="container">
+    <p class="recipe-section-label">Jutro</p>
+    <h2 class="recipe-section-title">Zajtrk</h2>
+    <p style="color:var(--gray);font-size:.95rem;max-width:56ch;">Jajca so najboljša zjutraj — ko so sveža in ko imate čas.</p>
+    <div class="recipe-grid">
+
+      <!-- Jajca Benedikt -->
+      <div class="recipe-card">
+        <div class="recipe-img">🥚</div>
+        <div class="recipe-body">
+          <h3 class="recipe-name">Jajca Benedikt s kmetijsko šunko</h3>
+          <div class="recipe-meta">
+            <span>⏱ 20 min</span>
+            <span>★★☆ Srednje</span>
+          </div>
+          <div class="recipe-ingredients">
+            <strong>Sestavine:</strong>
+            <ul>
+              <li>2 sveži jajci</li>
+              <li>1 angleški muffin, prerezan na pol</li>
+              <li>2 rezini domače šunke</li>
+              <li>2 rumenjaka, 80g masla, žlica limonovega soka (holandska omaka)</li>
+              <li>Sol, poper, kis za poširevanje</li>
+            </ul>
+          </div>
+          <div class="recipe-steps">
+            <strong>Priprava:</strong>
+            <ol>
+              <li>Stepaj rumenjake z limonovim sokom nad soparo, počasi vmešaj stopljeno maslo do kremaste omake.</li>
+              <li>V lonec z vrelo vodo dodaj žlico kisa, zmanjšaj ogenj. Razbij jajce v skodelico in ga spusti v vodo — pohaj 3 minute.</li>
+              <li>Opeci muffin, nanj položi šunko in poširano jajce.</li>
+              <li>Prelij z holandsko omako, začini s soljo in poparjem.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <!-- Zeliščna omletka -->
+      <div class="recipe-card">
+        <div class="recipe-img">🍳</div>
+        <div class="recipe-body">
+          <h3 class="recipe-name">Zeliščna omletka s kozjim sirom</h3>
+          <div class="recipe-meta">
+            <span>⏱ 10 min</span>
+            <span>★☆☆ Enostavno</span>
+          </div>
+          <div class="recipe-ingredients">
+            <strong>Sestavine:</strong>
+            <ul>
+              <li>3 sveža jajca</li>
+              <li>Sveži timijan in bazilika (šopek)</li>
+              <li>50g kozjega sira, nadrobljen</li>
+              <li>1 žlica masla, sol, poper</li>
+            </ul>
+          </div>
+          <div class="recipe-steps">
+            <strong>Priprava:</strong>
+            <ol>
+              <li>Stepaj jajca z ščepcem soli in popra — ne preveč, da ostanejo rahla.</li>
+              <li>Segrij maslo v ponvi, dodaj jajca. Ko se robovi začnejo strjevati, dodaj zelišča.</li>
+              <li>Ko je sredica še rahlo tekoča, po eni strani posuj kozji sir in zloži omletko na pol.</li>
+              <li>Postrezi takoj, z rezino kruha ali paradižnikom.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <!-- Kmetijska granola -->
+      <div class="recipe-card">
+        <div class="recipe-img">🥣</div>
+        <div class="recipe-body">
+          <h3 class="recipe-name">Kmetijska granola z jajčno smetano</h3>
+          <div class="recipe-meta">
+            <span>⏱ 25 min</span>
+            <span>★★☆ Srednje</span>
+          </div>
+          <div class="recipe-ingredients">
+            <strong>Sestavine:</strong>
+            <ul>
+              <li>4 rumenjaki</li>
+              <li>200ml smetane, 2 žlici medu</li>
+              <li>150g domačega ovsa, pečenega</li>
+              <li>Pest orehov, drobtinice, rozine</li>
+            </ul>
+          </div>
+          <div class="recipe-steps">
+            <strong>Priprava:</strong>
+            <ol>
+              <li>Stepaj rumenjake z medom nad soparo, dokler masa ni svetla in gosta (10 min).</li>
+              <li>Hladni smetani vmešaj kuhanjo maso — dobil boš svilen krem.</li>
+              <li>Oves speče v pečici na 170°C 15 minut z žlico olja in medu, dokler ni hrustljav.</li>
+              <li>Postavi v kozarec: granola, krem, granola. Postrezi hladno.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- KOSILO -->
+<section class="meal-section">
+  <div class="container">
+    <p class="recipe-section-label">Opoldne</p>
+    <h2 class="recipe-section-title">Kosilo</h2>
+    <p style="color:var(--gray);font-size:.95rem;max-width:56ch;">Pravi okus piščanca in rib se pokaže šele, ko so vzgojeni prav.</p>
+    <div class="recipe-grid">
+
+      <!-- Piščanec na žaru -->
+      <div class="recipe-card">
+        <div class="recipe-img">🐔</div>
+        <div class="recipe-body">
+          <h3 class="recipe-name">Piščanec na žaru z zelišči in krompirjem</h3>
+          <div class="recipe-meta">
+            <span>⏱ 2h</span>
+            <span>★★☆ Srednje</span>
+          </div>
+          <div class="recipe-ingredients">
+            <strong>Sestavine:</strong>
+            <ul>
+              <li>1 cel piščanec (~1.8kg)</li>
+              <li>4 stroki česna, vejica rožmarina, timijan</li>
+              <li>3 žlice olivnega olja, sol, poper</li>
+              <li>600g domačega krompirja, razpolavljenega</li>
+            </ul>
+          </div>
+          <div class="recipe-steps">
+            <strong>Priprava:</strong>
+            <ol>
+              <li>Piščanca mariniraš 2h ali čez noč: olivno olje, zdrobljeni česen, sol, poper, nasekljani zelišči.</li>
+              <li>Pečica na 200°C. Krompir razporedi v pekač, nanj položi piščanca prsno navzdol — prvih 30 min.</li>
+              <li>Obrni prsno navzgor, zmanjšaj na 180°C in peci še 60 min. Pokropljaj z lastnim sokom vsake 20 min.</li>
+              <li>Pusti počivati 10 min pred rezanjem — sok ostane v mesu.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <!-- Jajčna juha -->
+      <div class="recipe-card">
+        <div class="recipe-img">🥣</div>
+        <div class="recipe-body">
+          <h3 class="recipe-name">Jajčna juha s svežo zelenjavo</h3>
+          <div class="recipe-meta">
+            <span>⏱ 30 min</span>
+            <span>★☆☆ Enostavno</span>
+          </div>
+          <div class="recipe-ingredients">
+            <strong>Sestavine:</strong>
+            <ul>
+              <li>4 sveža jajca</li>
+              <li>1L domačega bujona (piščančjega ali zelenjavnega)</li>
+              <li>Korenček, steblo zelene, por — vse nasekljano</li>
+              <li>Svež peteršilj, sol, poper</li>
+            </ul>
+          </div>
+          <div class="recipe-steps">
+            <strong>Priprava:</strong>
+            <ol>
+              <li>Kuhaj bujon z zelenjavo 20 minut na srednji temperaturi.</li>
+              <li>Stepaj jajca z ščepcem soli. Ko juha mehko vre, v tankem curku vlij jajca in mešaj z vilicami — nastanejo niti.</li>
+              <li>Takoj umakni z ognja, začini in dodaj svežo zeleno.</li>
+              <li>Postrezi z domačim kruhom.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ribji tacos -->
+      <div class="recipe-card">
+        <div class="recipe-img">🌮</div>
+        <div class="recipe-body">
+          <h3 class="recipe-name">Ribji tacos s postrvi</h3>
+          <div class="recipe-meta">
+            <span>⏱ 20 min</span>
+            <span>★☆☆ Enostavno</span>
+          </div>
+          <div class="recipe-ingredients">
+            <strong>Sestavine:</strong>
+            <ul>
+              <li>2 sveži postrvi (~500g skupaj), fileti</li>
+              <li>6 koruznih tortilj</li>
+              <li>1 zrel avokado, limonin sok, koriander</li>
+              <li>Rdeče zelje, rezano, sol, olivno olje</li>
+            </ul>
+          </div>
+          <div class="recipe-steps">
+            <strong>Priprava:</strong>
+            <ol>
+              <li>Ribe začini s soljo, poprom in limonovim sokom. Speče na žaru ali v ponvi 3 min na stran.</li>
+              <li>Avokado zmečkaj z vilicami, dodaj sol in kapljico limone.</li>
+              <li>Tortilje ogrij na suhi ponvi 30 sekund.</li>
+              <li>Zloži: avokado, riba, zelje, koriander, kapljica limone.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- VECERJA -->
+<section class="meal-section">
+  <div class="container">
+    <p class="recipe-section-label">Zvečer</p>
+    <h2 class="recipe-section-title">Večerja</h2>
+    <p style="color:var(--gray);font-size:.95rem;max-width:56ch;">Ko ni hitenja — hrana, ki jo je vredno narediti počasi.</p>
+    <div class="recipe-grid">
+
+      <!-- Pečen piščanec z zelenjavo -->
+      <div class="recipe-card">
+        <div class="recipe-img">🥘</div>
+        <div class="recipe-body">
+          <h3 class="recipe-name">Pečen piščanec z vrtno zelenjavo</h3>
+          <div class="recipe-meta">
+            <span>⏱ 90 min</span>
+            <span>★★☆ Srednje</span>
+          </div>
+          <div class="recipe-ingredients">
+            <strong>Sestavine:</strong>
+            <ul>
+              <li>Polovica piščanca ali stegna (600–700g)</li>
+              <li>Sezonska zelenjava: bučke, paprika, por, korenček</li>
+              <li>4 stroki česna, vejica timijana</li>
+              <li>Olivno olje, sol, poper, kapljica rdečega vina</li>
+            </ul>
+          </div>
+          <div class="recipe-steps">
+            <strong>Priprava:</strong>
+            <ol>
+              <li>Zelenjavo nareži na večje kose, razporedi v pekač. Dodaj česen, timijan, sol, olje in mešaj.</li>
+              <li>Piščanca položi na zelenjavo, začini in pokropij z oljem.</li>
+              <li>Peče na 190°C 75 min. Po 40 minutah dodaj kapljico vina in pokrij z alufolijo.</li>
+              <li>Odkryj zadnjih 15 min za hrustljavo kožo.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <!-- Carbonara -->
+      <div class="recipe-card">
+        <div class="recipe-img">🍝</div>
+        <div class="recipe-body">
+          <h3 class="recipe-name">Carbonara s svežimi jajci</h3>
+          <div class="recipe-meta">
+            <span>⏱ 20 min</span>
+            <span>★★☆ Srednje</span>
+          </div>
+          <div class="recipe-ingredients">
+            <strong>Sestavine:</strong>
+            <ul>
+              <li>3 sveži rumenjaki + 1 celo jajce</li>
+              <li>150g guanciale ali pancete, narezane na trakce</li>
+              <li>50g naribanega pecorino ali parmezana</li>
+              <li>400g testenin (spaghetti ali rigatoni), črni poper</li>
+            </ul>
+          </div>
+          <div class="recipe-steps">
+            <strong>Priprava:</strong>
+            <ol>
+              <li>Kuhaj testo al dente — prihrani 200ml kuhalne vode.</li>
+              <li>V ponvi brez olja speče guanciale do hrustljavosti, odlij odvečno mast.</li>
+              <li>Stepaj rumenjake s sirom in obilico popra. Dodaj žlico kuhalne vode — masa mora biti tekoča.</li>
+              <li>Vroče (ne vrele!) testo premešaj z guanciale, nato UMAKNI Z OGNJA in vmešaj jajčno maso. Dodajaj kuhalno vodo žlico po žlico do kremaste konsistence.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <!-- Postrv v foliji -->
+      <div class="recipe-card">
+        <div class="recipe-img">🐟</div>
+        <div class="recipe-body">
+          <h3 class="recipe-name">Postrv v foliji s svežimi zelišči</h3>
+          <div class="recipe-meta">
+            <span>⏱ 25 min</span>
+            <span>★☆☆ Enostavno</span>
+          </div>
+          <div class="recipe-ingredients">
+            <strong>Sestavine:</strong>
+            <ul>
+              <li>1 cela postrv (~500g), očiščena</li>
+              <li>1 limona, narezana na rezine</li>
+              <li>Sveži koprc, peteršilj, vejica timijana</li>
+              <li>20g masla, sol, poper</li>
+            </ul>
+          </div>
+          <div class="recipe-steps">
+            <strong>Priprava:</strong>
+            <ol>
+              <li>Pečico segrij na 200°C. Pripravi velik list aluminijaste folije.</li>
+              <li>Ribo posolipopraj znotraj in zunaj. V trebuh položi limone, koprc in timijan.</li>
+              <li>Na folijo položi ribe, nanj maslo narezano na lističe, poveži folijo v tesni paket.</li>
+              <li>Peče 20 min. Odpri folijo, postrezi takoj z limono in svežim zelišči.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- BOTTOM CTA -->
+<div class="cta-banner">
+  <div class="container">
+    <h2>Naroči sestavine direktno s kmetije</h2>
+    <p>Sveža jajca, piščanec, postrv, zelenjava — dostavljeno k tebi. Recepti so boljši, ko so sestavine prave.</p>
+    <a href="shop.html" class="btn btn-primary">Pojdi v trgovino →</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">Jutro s kmetije</div>
+        <p style="font-size:.9rem;margin-bottom:1rem;">Svobodna reja. Dostavljeno k tebi.</p>
+        <p style="font-size:.85rem;">📍 Slovenija, dostava v okolici 30km</p>
+        <p style="font-size:.85rem;">📞 <a href="tel:+38641000000">041 000 000</a></p>
+        <p style="font-size:.85rem;">✉️ <a href="mailto:info@jutroszkmetije.si">info@jutroszkmetije.si</a></p>
+      </div>
+      <div>
+        <h4>Strani</h4>
+        <ul>
+          <li><a href="index.html">Domov</a></li>
+          <li><a href="recepti.html">Recepti</a></li>
+          <li><a href="shop.html">Trgovina</a></li>
+          <li><a href="about.html">O nas</a></li>
+          <li><a href="preorder.html">Naroči</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Sledite nam</h4>
+        <ul>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Facebook</a></li>
+          <li><a href="#">TikTok</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Novice s kmetije</h4>
+        <p style="font-size:.85rem;margin-bottom:.75rem;">Vsak teden kratka novica: kaj raste, kaj smo se naučili, kdaj dostavljamo.</p>
+        <form class="newsletter-form" onsubmit="event.preventDefault();this.innerHTML='<p style=color:var(--yellow);font-size:.9rem;>Hvala! Javimo se. 🥚</p>'">
+          <input type="email" placeholder="vaš@email.si" required>
+          <button type="submit">Pošlji</button>
+        </form>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Jutro s kmetije. Vse pravice pridržane.</span>
+      <span>Z ljubeznijo narejen v Sloveniji 🇸🇮</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function updateCartBadge() {
+    const cart = JSON.parse(localStorage.getItem('jsk_cart') || '[]');
+    const total = cart.reduce((s, i) => s + i.qty, 0);
+    document.getElementById('cart-count').textContent = total;
+  }
+  updateCartBadge();
+</script>
+</body>
+</html>
