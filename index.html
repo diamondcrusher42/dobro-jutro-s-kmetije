@@ -3,15 +3,77 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jutro s kmetije — Prihajamo kmalu</title>
-  <meta name="description" content="Sveža jajca, piščanci, ribe in zelenjava. Direktno s kmetije k tebi. Pridruži se prvi.">
-  <meta property="og:title" content="Jutro s kmetije — Prihajamo kmalu">
-  <meta property="og:description" content="Sveža jajca, piščanci, ribe in zelenjava. Direktno s kmetije k tebi. Pridruži se prvi.">
+  <title>Jutro s kmetije — Sveža jajca in zelenjava | Dostava Ljubljana</title>
+  <meta name="description" content="Sveža jajca, piščanec, ribe in zelenjava direktno s kmetije. Pobrano zjutraj, dostavljeno do kosila. Dostava v krogu 30km od Ljubljane.">
+  <meta property="og:title" content="Jutro s kmetije — Sveža jajca in zelenjava | Dostava Ljubljana">
+  <meta property="og:description" content="Pobrano zjutraj, pri tebi do kosila. Jajca, piščanec, ribe in zelenjava direktno s kmetije. Dostava Ljubljana 30km.">
   <meta property="og:type" content="website">
+  <!-- TODO: og:image — dodajte pravo fotografijo kmetije (1200×630px) -->
+  <!-- <meta property="og:image" content="https://jutroszkmetije.si/img/og-kmetija.jpg"> -->
+  <link rel="canonical" href="https://diamondcrusher42.github.io/dobro-jutro-s-kmetije/">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,400;1,9..144,700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Fonts: reduced from 10 to 4 variants for faster load -->
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,700;1,9..144,400&family=DM+Sans:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <!-- TODO: Zamenjajte XXXXX z vašim GTM ID-jem (google.com/tagmanager) -->
+  <!-- <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-XXXXX');</script> -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Jutro s kmetije",
+    "description": "Sveža jajca, piščanec, ribe in zelenjava direktno s kmetije. Pobrano zjutraj, dostavljeno do kosila.",
+    "url": "https://diamondcrusher42.github.io/dobro-jutro-s-kmetije/",
+    "telephone": "+38641000000",
+    "email": "info@jutroskmetije.si",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Ljubljana",
+      "addressCountry": "SI"
+    },
+    "areaServed": {
+      "@type": "GeoCircle",
+      "geoMidpoint": {
+        "@type": "GeoCoordinates",
+        "latitude": 46.0569,
+        "longitude": 14.5058
+      },
+      "geoRadius": "30000"
+    },
+    "priceRange": "€€",
+    "openingHours": "Tu,Fr 07:00-13:00",
+    "sameAs": []
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Kdaj dostavljate?",
+        "acceptedAnswer": {"@type": "Answer", "text": "Dostavljamo ob torkih in petkih do 13:00 v krogu 30 km od Ljubljane."}
+      },
+      {
+        "@type": "Question",
+        "name": "Kakšno je dostavljalno območje?",
+        "acceptedAnswer": {"@type": "Answer", "text": "Dostavljamo v krogu 30 km od Ljubljane. Za točno lokacijo nas kontaktirajte."}
+      },
+      {
+        "@type": "Question",
+        "name": "Kako poteka naročilo?",
+        "acceptedAnswer": {"@type": "Answer", "text": "Izberite izdelke v spletni trgovini ali izpolnite obrazec za prednaročilo. Potrditev prejmete po e-pošti."}
+      },
+      {
+        "@type": "Question",
+        "name": "Kako plačam?",
+        "acceptedAnswer": {"@type": "Answer", "text": "Plačilo ob dostavi — gotovina ali bančni nakazilo po dostavi. Ni predplačil."}
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
 
@@ -38,13 +100,13 @@
   <div class="hero-badge" aria-label="Lokacija in reja">Prosto reje · Ljubljana</div>
 
   <div class="hero-body">
-    <p class="hero-label">Prihajamo kmalu · Ljubljana</p>
+    <p class="hero-label">Sveža jajca, piščanec, zelenjava · dostava Ljubljana 30km</p>
 
     <h1 class="hero-headline">
-      Pridruži se<br>nam prvi<span class="dot">.</span>
+      Pobrano zjutraj.<br>Pri tebi do kosila<span class="dot">.</span>
     </h1>
 
-    <p class="hero-subline">Sveža jajca, piščanci, ribe in zelenjava. Direktno s kmetije k tebi.</p>
+    <p class="hero-subline">Direktno s kmetije — brez hladilnih verig, brez vmesnih rok.</p>
 
     <p style="color:rgba(255,255,255,.6);max-width:52ch;margin-bottom:2.5rem;font-size:1.05rem;line-height:1.7;">
       Gradimo kmetijo. Preden odpremo dostavo, zbiramo prve naročnike — tiste, ki bodo dobili prednost pri terminih, posebno ceno in brezplačni degustacijski obrok.
@@ -58,11 +120,19 @@
     <p style="color:rgba(255,255,255,.4);font-size:.85rem;margin-top:1.25rem;">
       Brezplačni degustacijski obrok na food trucku za prve naročnike.
     </p>
+
+    <!-- Urgency counter — TODO: posodobi število naročnikov redno -->
+    <div style="margin-top:2rem;max-width:320px;">
+      <div style="background:rgba(255,255,255,.1);border-radius:99px;height:6px;overflow:hidden;">
+        <div style="background:var(--yellow);height:100%;width:24%;border-radius:99px;"></div>
+      </div>
+      <p style="color:rgba(255,255,255,.5);font-size:.8rem;margin-top:.5rem;">12 od 50 zgodnjih naročnikov — <strong style="color:rgba(249,200,0,.8);">38 mest ostalo</strong></p>
+    </div>
   </div>
 
   <div class="hero-scroll" aria-hidden="true">
     <div class="hero-scroll-line"></div>
-    <span class="hero-scroll-label">Pomakniti navzdol</span>
+    <span class="hero-scroll-label">Pomaknite se navzdol</span>
   </div>
 
 </header>
@@ -289,6 +359,36 @@
   </div>
 </section>
 
+<!-- FAQ -->
+<section class="section bg-white" id="faq" aria-label="Pogosta vprašanja">
+  <div class="container" style="max-width:720px;">
+    <span class="eyebrow">Pogosta vprašanja</span>
+    <h2 class="section-title" style="margin-bottom:var(--sp-6);">Kar nas najpogosteje sprašate</h2>
+    <div style="display:flex;flex-direction:column;gap:0;">
+      <details style="border-bottom:1.5px solid var(--gray-lt);padding:1.25rem 0;">
+        <summary style="font-weight:700;font-size:1rem;cursor:pointer;list-style:none;display:flex;justify-content:space-between;">Kdaj dostavljate? <span>+</span></summary>
+        <p style="color:var(--gray);font-size:.95rem;margin-top:.75rem;max-width:60ch;">Dostavljamo ob <strong>torkih in petkih</strong> do 13:00. Naročilo oddajte vsaj dan prej. Za enkratna naročila se dogovorimo individualno.</p>
+      </details>
+      <details style="border-bottom:1.5px solid var(--gray-lt);padding:1.25rem 0;">
+        <summary style="font-weight:700;font-size:1rem;cursor:pointer;list-style:none;display:flex;justify-content:space-between;">Kakšno je dostavljalno območje? <span>+</span></summary>
+        <p style="color:var(--gray);font-size:.95rem;margin-top:.75rem;max-width:60ch;">Dostavljamo v <strong>krogu 30 km od Ljubljane</strong>. Pokrivamo Ljubljana, Domžale, Kamnik, Mengeš, Trzin in okolico. Niste prepričani? Vprašajte nas.</p>
+      </details>
+      <details style="border-bottom:1.5px solid var(--gray-lt);padding:1.25rem 0;">
+        <summary style="font-weight:700;font-size:1rem;cursor:pointer;list-style:none;display:flex;justify-content:space-between;">Kako plačam? <span>+</span></summary>
+        <p style="color:var(--gray);font-size:.95rem;margin-top:.75rem;max-width:60ch;"><strong>Plačilo ob dostavi</strong> — gotovina ali bančno nakazilo. Brez predplačil, brez naročnin. Plačate samo, kar prejmete.</p>
+      </details>
+      <details style="border-bottom:1.5px solid var(--gray-lt);padding:1.25rem 0;">
+        <summary style="font-weight:700;font-size:1rem;cursor:pointer;list-style:none;display:flex;justify-content:space-between;">Kako naročim? <span>+</span></summary>
+        <p style="color:var(--gray);font-size:.95rem;margin-top:.75rem;max-width:60ch;">Izpolnite <a href="preorder.html" style="color:var(--green);font-weight:600;">obrazec za prednaročilo</a> ali naročite neposredno v <a href="shop.html" style="color:var(--green);font-weight:600;">spletni trgovini</a>. Potrditev prejmete po e-pošti v 24h.</p>
+      </details>
+      <details style="padding:1.25rem 0;">
+        <summary style="font-weight:700;font-size:1rem;cursor:pointer;list-style:none;display:flex;justify-content:space-between;">Ali je hrana res ekološka? <span>+</span></summary>
+        <p style="color:var(--gray);font-size:.95rem;margin-top:.75rem;max-width:60ch;">Kmetujemo <strong>brez kemikalij, antibiotikov in pesticidov</strong>. Kokoši se pasejo na 15.000m² rotacijskega pašnika, krmljene so z BSF larvami. Dokumentacijo posredujemo na zahtevo.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
 <!-- CTA BANNER -->
 <section class="cta-banner">
   <div class="container">
@@ -320,24 +420,29 @@
       </div>
       <div>
         <h4>Sledite nam</h4>
+        <!-- TODO: Zamenjajte # z resničnimi URL-ji profilov -->
         <ul>
-          <li><a href="#">Instagram</a></li>
-          <li><a href="#">Facebook</a></li>
-          <li><a href="#">TikTok</a></li>
+          <li style="color:rgba(255,255,255,.3);font-size:.85rem;">Instagram — kmalu</li>
+          <li style="color:rgba(255,255,255,.3);font-size:.85rem;">Facebook — kmalu</li>
+          <li style="color:rgba(255,255,255,.3);font-size:.85rem;">TikTok — kmalu</li>
         </ul>
       </div>
       <div>
         <h4>Novice s kmetije</h4>
         <p style="font-size:.85rem;margin-bottom:.75rem;color:rgba(255,255,255,.45);">Vsak teden kratka novica: kaj raste, kaj smo se naučili, kdaj dostavljamo.</p>
         <form class="newsletter-form" onsubmit="event.preventDefault();this.innerHTML='<p style=color:var(--yellow);font-size:.9rem;>Hvala! Javimo se.</p>'">
-          <input type="email" placeholder="vaš@email.si" required>
-          <button type="submit">Pošlji</button>
+          <input type="email" placeholder="vaš@email.si" required autocomplete="email">
+          <button type="submit">Pošlji mi novice</button>
         </form>
+        <label style="display:flex;align-items:flex-start;gap:.5rem;margin-top:.6rem;font-size:.75rem;color:rgba(255,255,255,.4);cursor:pointer;">
+          <input type="checkbox" required style="margin-top:2px;flex-shrink:0;accent-color:var(--yellow);">
+          <span>Strinjam se z <a href="privacy.html" style="color:rgba(249,200,0,.7);text-decoration:underline;">politiko zasebnosti</a>. Odjava kadarkoli.</span>
+        </label>
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© 2026 Jutro s kmetije. Vse pravice pridržane.</span>
-      <span>v1.2 · 2026-04-21</span>
+      <span>© 2026 Jutro s kmetije. Vse pravice pridržane. · <a href="privacy.html" style="color:rgba(255,255,255,.35);text-decoration:underline;">Politika zasebnosti</a></span>
+      <span>v1.3 · 2026-04-21</span>
     </div>
   </div>
 </footer>

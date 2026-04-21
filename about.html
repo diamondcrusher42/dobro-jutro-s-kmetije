@@ -9,7 +9,7 @@
   <meta property="og:description" content="Spoznajte kmetijo, ki ji zaupamo naravi. Zgodba o svobodni reji in trajnostnem kmetijstvu.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,400;1,9..144,700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,700;1,9..144,400&family=DM+Sans:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <style>
     .story-section { padding: 4rem 1.5rem; }
@@ -219,23 +219,28 @@
       </div>
       <div>
         <h4>Sledite nam</h4>
+        <!-- TODO: Zamenjajte # z resničnimi URL-ji profilov -->
         <ul>
-          <li><a href="#">Instagram</a></li>
-          <li><a href="#">Facebook</a></li>
-          <li><a href="#">TikTok</a></li>
+          <li style="color:rgba(255,255,255,.3);font-size:.85rem;">Instagram — kmalu</li>
+          <li style="color:rgba(255,255,255,.3);font-size:.85rem;">Facebook — kmalu</li>
+          <li style="color:rgba(255,255,255,.3);font-size:.85rem;">TikTok — kmalu</li>
         </ul>
       </div>
       <div>
         <h4>Novice s kmetije</h4>
         <form class="newsletter-form" onsubmit="event.preventDefault();this.innerHTML='<p style=color:var(--yellow);font-size:.9rem;>Hvala! 🥚</p>'">
-          <input type="email" placeholder="vaš@email.si" required>
-          <button type="submit">Pošlji</button>
+          <input type="email" placeholder="vaš@email.si" required autocomplete="email">
+          <button type="submit">Pošlji mi novice</button>
         </form>
+        <label style="display:flex;align-items:flex-start;gap:.5rem;margin-top:.6rem;font-size:.75rem;color:rgba(255,255,255,.4);cursor:pointer;">
+          <input type="checkbox" required style="margin-top:2px;flex-shrink:0;accent-color:var(--yellow);">
+          <span>Strinjam se z <a href="privacy.html" style="color:rgba(249,200,0,.7);text-decoration:underline;">politiko zasebnosti</a>. Odjava kadarkoli.</span>
+        </label>
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© 2026 Jutro s kmetije. Vse pravice pridržane.</span>
-      <span>v1.2 · 2026-04-21</span>
+      <span>© 2026 Jutro s kmetije. Vse pravice pridržane. · <a href="privacy.html" style="color:rgba(255,255,255,.35);text-decoration:underline;">Politika zasebnosti</a></span>
+      <span>v1.3 · 2026-04-21</span>
     </div>
   </div>
 </footer>
