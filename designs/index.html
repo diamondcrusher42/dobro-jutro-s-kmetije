@@ -173,6 +173,29 @@
       </div>
     </div>
 
+    <!-- Design OS -->
+    <div class="design-card">
+      <div class="design-preview">
+        <iframe src="design-os.html" loading="lazy" title="Design OS preview"></iframe>
+        <a href="design-os.html" class="preview-overlay" title="Odpri Design OS v polni velikosti"></a>
+        <span class="preview-label" style="background: var(--yellow); color: var(--green-dk);">Design OS</span>
+      </div>
+      <div class="design-body">
+        <div class="design-name">Design OS — Framework</div>
+        <p class="design-desc">Rigorizirana uporaba design-skill-os principov: Z-pattern hero, F-pattern produkt grid, 60/30/10 barve, modularna typografska lestvica, Gestalt proximity grupiranje. Tipografija kot primarni dizajn element.</p>
+        <div class="design-tags">
+          <span class="tag">Design OS</span>
+          <span class="tag">Z/F pattern</span>
+          <span class="tag">60/30/10 barve</span>
+          <span class="tag">Tipografija-first</span>
+        </div>
+        <div class="design-actions">
+          <a href="design-os.html" class="btn-view btn-primary">Odpri →</a>
+          <a href="design-os.html" target="_blank" class="btn-view btn-outline">Nov zavihek</a>
+        </div>
+      </div>
+    </div>
+
   </div>
 
   <!-- VOTE -->
@@ -183,6 +206,7 @@
       <button class="vote-btn v1" onclick="vote('Minimal — Editorial')">Minimal</button>
       <button class="vote-btn v2" onclick="vote('Tržnica — Bold Market')">Tržnica (rumena)</button>
       <button class="vote-btn v3" onclick="vote('Modern — SaaS style')">Modern (zelena)</button>
+      <button class="vote-btn" style="background:var(--yellow);color:var(--green-dk);" onclick="vote('Design OS — Framework')">Design OS</button>
     </div>
     <div class="vote-result" id="vote-result"></div>
   </div>
@@ -197,6 +221,7 @@
           <th>Minimal</th>
           <th>Tržnica</th>
           <th>Modern</th>
+          <th>Design OS</th>
         </tr>
       </thead>
       <tbody>
@@ -205,35 +230,41 @@
           <td class="tick">✓✓</td>
           <td class="tick">✓✓✓</td>
           <td class="tick">✓✓</td>
+          <td class="tick">✓✓✓</td>
         </tr>
         <tr>
           <td>Primerno za HoReCa B2B</td>
           <td class="tick">✓✓</td>
           <td class="tick">✓</td>
           <td class="tick">✓✓✓</td>
+          <td class="tick">✓✓</td>
         </tr>
         <tr>
           <td>Pricing table</td>
           <td class="cross">–</td>
           <td class="cross">–</td>
           <td class="tick">✓</td>
+          <td class="cross">–</td>
         </tr>
         <tr>
           <td>SVG ilustracije</td>
           <td class="tick">✓</td>
           <td class="cross">–</td>
           <td class="cross">–</td>
+          <td class="tick">✓</td>
         </tr>
         <tr>
           <td>Emoji animacija / ticker</td>
           <td class="cross">–</td>
           <td class="tick">✓</td>
           <td class="cross">–</td>
+          <td class="cross">–</td>
         </tr>
         <tr>
-          <td>Newsletter form</td>
+          <td>Newsletter / pre-order form</td>
           <td class="cross">–</td>
           <td class="cross">–</td>
+          <td class="tick">✓</td>
           <td class="tick">✓</td>
         </tr>
         <tr>
@@ -241,12 +272,28 @@
           <td class="tick">★★★</td>
           <td class="tick">★★</td>
           <td class="tick">★★★</td>
+          <td class="tick">★★★</td>
         </tr>
         <tr>
           <td>Energija in zabava</td>
           <td class="tick">★</td>
           <td class="tick">★★★</td>
           <td class="tick">★★</td>
+          <td class="tick">★★</td>
+        </tr>
+        <tr>
+          <td>Design-framework principi</td>
+          <td class="cross">–</td>
+          <td class="cross">–</td>
+          <td class="cross">–</td>
+          <td class="tick">✓✓✓</td>
+        </tr>
+        <tr>
+          <td>Tipografija kot dizajn element</td>
+          <td class="tick">✓✓</td>
+          <td class="tick">✓</td>
+          <td class="tick">✓✓</td>
+          <td class="tick">✓✓✓</td>
         </tr>
       </tbody>
     </table>

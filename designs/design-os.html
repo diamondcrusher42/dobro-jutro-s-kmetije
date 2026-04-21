@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jutro s kmetije — Design OS</title>
+  <meta name="description" content="Sveža jajca in pridelki s kmetije. Pobrano zjutraj, pri tebi do kosila. Ljubljana.">
+  <meta property="og:title" content="Jutro s kmetije">
+  <meta property="og:description" content="Sveža jajca. Ljubljana.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,400;1,9..144,700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ─── RESET & BASE ─────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      /* Color system — 60/30/10 */
+      --white:      #FFFFFF;         /* 60% — space, clarity */
+      --off-white:  #F8F7F4;         /* 60% — warmth under white */
+      --green-dk:   #1A3D1F;         /* 30% — nature, trust, anchor */
+      --green:      #2E7D32;         /* 30% — secondary green */
+      --yellow:     #F9C800;         /* 10% — energy, freshness, CTA */
+      --yellow-dk:  #C9A000;         /* 10% — yellow on hover */
+
+      /* Typography scale — modular (×1.333 perfect fourth) */
+      --text-xs:    0.75rem;
+      --text-sm:    0.875rem;
+      --text-base:  1rem;
+      --text-lg:    1.125rem;
+      --text-xl:    1.5rem;
+      --text-2xl:   2rem;
+      --text-3xl:   2.666rem;
+      --text-4xl:   3.555rem;
+      --text-5xl:   clamp(3.5rem, 10vw, 6rem);
+
+      /* Spacing — Fibonacci rhythm */
+      --sp-1: 0.5rem;
+      --sp-2: 0.75rem;
+      --sp-3: 1rem;
+      --sp-4: 1.5rem;
+      --sp-5: 2rem;
+      --sp-6: 3rem;
+      --sp-7: 5rem;
+      --sp-8: 8rem;
+
+      /* Grid */
+      --max-w: 1140px;
+      --gutter: clamp(1.5rem, 5vw, 3rem);
+
+      /* Type */
+      --font-display: 'Fraunces', Georgia, serif;
+      --font-body:    'DM Sans', system-ui, sans-serif;
+
+      /* Transitions */
+      --ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+    }
+
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--white);
+      color: var(--green-dk);
+      line-height: 1.65;
+      font-size: var(--text-base);
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; height: auto; display: block; }
+    ul { list-style: none; }
+
+    .container {
+      width: 100%;
+      max-width: var(--max-w);
+      margin-inline: auto;
+      padding-inline: var(--gutter);
+    }
+
+    /* ─── SECTION SPACING ──────────────────────────────────────── */
+    .section { padding-block: var(--sp-8); }
+    @media (max-width: 600px) { .section { padding-block: var(--sp-7); } }
+
+    /* ─── EYEBROW ──────────────────────────────────────────────── */
+    .eyebrow {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-size: var(--text-xs);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--green);
+      margin-bottom: var(--sp-3);
+    }
+
+    /* ─── 1. HERO ──────────────────────────────────────────────── */
+    /*
+     * Z-pattern: Eye enters top-left (brand mark) →
+     * sweeps right (empty space / yellow badge) →
+     * drops diagonally to headline (bottom-left) →
+     * CTA completes Z at bottom-right.
+     */
+    .hero {
+      background: var(--green-dk);
+      min-height: 100svh;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Texture layer — organic noise */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(ellipse 80% 60% at 70% 40%, rgba(46,125,50,0.25) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 40% at 20% 80%, rgba(249,200,0,0.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    /* Nav bar — minimal, transparent over hero */
+    .hero-nav {
+      position: relative;
+      z-index: 10;
+      padding: var(--sp-4) var(--gutter);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .hero-brand {
+      font-family: var(--font-display);
+      font-size: var(--text-lg);
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.01em;
+    }
+
+    .hero-nav-links {
+      display: flex;
+      gap: var(--sp-5);
+    }
+
+    .hero-nav-links a {
+      font-size: var(--text-sm);
+      font-weight: 500;
+      color: rgba(255,255,255,0.6);
+      transition: color 0.2s var(--ease);
+    }
+
+    .hero-nav-links a:hover { color: var(--white); }
+
+    @media (max-width: 600px) { .hero-nav-links { display: none; } }
+
+    /* Hero content — left-aligned, Z entry point */
+    .hero-body {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: var(--sp-6) var(--gutter) var(--sp-7);
+      max-width: var(--max-w);
+      margin-inline: auto;
+      width: 100%;
+    }
+
+    /* Yellow badge — interrupts Z-scan at top-right */
+    .hero-badge {
+      position: absolute;
+      top: clamp(5rem, 12vw, 8rem);
+      right: var(--gutter);
+      background: var(--yellow);
+      color: var(--green-dk);
+      font-family: var(--font-body);
+      font-size: var(--text-xs);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      padding: var(--sp-2) var(--sp-4);
+      border-radius: 2px;
+      z-index: 10;
+    }
+
+    @media (max-width: 600px) { .hero-badge { display: none; } }
+
+    /* Display headline — type IS the design */
+    .hero-headline {
+      font-family: var(--font-display);
+      font-size: var(--text-5xl);
+      font-weight: 900;
+      line-height: 0.95;
+      color: var(--white);
+      letter-spacing: -0.03em;
+      margin-bottom: var(--sp-4);
+    }
+
+    /* Dot as brand accent — uses yellow meaningfully */
+    .hero-headline .dot { color: var(--yellow); }
+
+    .hero-subline {
+      font-family: var(--font-body);
+      font-size: var(--text-xl);
+      font-weight: 400;
+      color: rgba(255,255,255,0.65);
+      letter-spacing: 0.02em;
+      margin-bottom: var(--sp-6);
+      max-width: 24ch;
+    }
+
+    /* CTA — Z terminus, maximum contrast */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--sp-2);
+      padding: 1rem 2rem;
+      font-family: var(--font-body);
+      font-size: var(--text-base);
+      font-weight: 700;
+      border-radius: 4px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s var(--ease);
+      text-decoration: none;
+    }
+
+    .btn-yellow {
+      background: var(--yellow);
+      color: var(--green-dk);
+    }
+
+    .btn-yellow:hover {
+      background: var(--yellow-dk);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(249,200,0,0.35);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--white);
+      border: 1.5px solid rgba(255,255,255,0.3);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.5);
+    }
+
+    .btn-dark {
+      background: var(--green-dk);
+      color: var(--white);
+    }
+
+    .btn-dark:hover {
+      background: var(--green);
+      transform: translateY(-2px);
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: var(--sp-3);
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    /* Scroll indicator — type-driven */
+    .hero-scroll {
+      position: relative;
+      z-index: 10;
+      padding: var(--sp-4) var(--gutter);
+      display: flex;
+      align-items: center;
+      gap: var(--sp-2);
+      max-width: var(--max-w);
+      margin-inline: auto;
+      width: 100%;
+    }
+
+    .hero-scroll-line {
+      flex: 1;
+      max-width: 60px;
+      height: 1px;
+      background: rgba(255,255,255,0.2);
+    }
+
+    .hero-scroll-label {
+      font-size: var(--text-xs);
+      color: rgba(255,255,255,0.35);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    /* ─── 2. MANIFESTO ─────────────────────────────────────────── */
+    /*
+     * White background. Single Fraunces italic line.
+     * Maximum white space — the line breathes alone.
+     * Purpose: punctuation between hero and product.
+     * Color meaning: white = clarity, pause, honesty.
+     */
+    .manifesto {
+      background: var(--white);
+      padding: clamp(5rem, 12vw, 10rem) var(--gutter);
+      text-align: center;
+    }
+
+    .manifesto-line {
+      font-family: var(--font-display);
+      font-size: clamp(1.4rem, 3.5vw, 2.25rem);
+      font-style: italic;
+      font-weight: 300;
+      color: var(--green-dk);
+      line-height: 1.4;
+      max-width: 26ch;
+      margin-inline: auto;
+      letter-spacing: -0.01em;
+    }
+
+    /* Thin green rule above — proximity: ties to brand */
+    .manifesto::before {
+      content: '';
+      display: block;
+      width: 2px;
+      height: 48px;
+      background: var(--yellow);
+      margin-inline: auto;
+      margin-bottom: var(--sp-6);
+    }
+
+    .manifesto::after {
+      content: '';
+      display: block;
+      width: 2px;
+      height: 48px;
+      background: var(--yellow);
+      margin-inline: auto;
+      margin-top: var(--sp-6);
+    }
+
+    /* ─── 3. PRODUCT GRID ──────────────────────────────────────── */
+    /*
+     * F-pattern: Two cards on top row, one below-left.
+     * Eye scans top row (Jajca → Zelenjava), drops left, finds Piščanec.
+     * Gestalt proximity: cards group visually via shared gap rhythm.
+     * Color: off-white background = warmth, earth, farm.
+     */
+    .products {
+      background: var(--off-white);
+      padding-block: var(--sp-8);
+    }
+
+    .products-header {
+      margin-bottom: var(--sp-6);
+    }
+
+    .products-title {
+      font-family: var(--font-display);
+      font-size: var(--text-3xl);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--green-dk);
+      max-width: 18ch;
+    }
+
+    .products-subtitle {
+      margin-top: var(--sp-3);
+      font-size: var(--text-base);
+      color: rgba(26,61,31,0.55);
+      max-width: 48ch;
+      line-height: 1.7;
+    }
+
+    /* F-pattern grid: 2 cols top, span on mobile */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    @media (max-width: 860px) {
+      .products-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 560px) {
+      .products-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Product card — minimal, price visible, single CTA */
+    .product-card {
+      background: var(--white);
+      border-radius: 4px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      /* No shadow, no border — negative space does the separating */
+      outline: 1px solid rgba(26,61,31,0.06);
+      transition: outline-color 0.2s var(--ease), transform 0.2s var(--ease);
+    }
+
+    .product-card:hover {
+      outline-color: rgba(26,61,31,0.15);
+      transform: translateY(-3px);
+    }
+
+    /* Image placeholder — dark green with SVG motif */
+    .product-img {
+      aspect-ratio: 4/3;
+      background: var(--green-dk);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .product-img-motif {
+      opacity: 0.12;
+      width: 80px;
+      height: 80px;
+    }
+
+    /* Subtle gradient overlay */
+    .product-img::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 40%;
+      background: linear-gradient(to top, rgba(0,0,0,0.3), transparent);
+    }
+
+    /* Card body */
+    .product-body {
+      padding: var(--sp-4);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-2);
+    }
+
+    .product-category {
+      font-size: var(--text-xs);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--green);
+    }
+
+    .product-name {
+      font-family: var(--font-display);
+      font-size: var(--text-xl);
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--green-dk);
+      letter-spacing: -0.01em;
+    }
+
+    .product-desc {
+      font-size: var(--text-sm);
+      color: rgba(26,61,31,0.6);
+      line-height: 1.65;
+      flex: 1;
+    }
+
+    .product-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: var(--sp-3);
+      border-top: 1px solid rgba(26,61,31,0.06);
+      margin-top: auto;
+    }
+
+    .product-price {
+      font-family: var(--font-display);
+      font-size: var(--text-xl);
+      font-weight: 700;
+      color: var(--green-dk);
+      letter-spacing: -0.02em;
+    }
+
+    .product-price sup {
+      font-size: var(--text-sm);
+      font-family: var(--font-body);
+      font-weight: 400;
+      letter-spacing: 0;
+      vertical-align: super;
+      color: rgba(26,61,31,0.5);
+      margin-left: 2px;
+    }
+
+    .product-cta {
+      font-size: var(--text-sm);
+      font-weight: 700;
+      color: var(--green-dk);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: gap 0.2s var(--ease), color 0.2s var(--ease);
+    }
+
+    .product-card:hover .product-cta {
+      color: var(--green);
+      gap: 8px;
+    }
+
+    /* Product SVG icons — inline, no external deps */
+    .icon-egg { fill: var(--white); }
+    .icon-veg { fill: var(--white); }
+    .icon-chicken { fill: var(--white); }
+
+    /* ─── 4. SOCIAL PROOF ──────────────────────────────────────── */
+    /*
+     * Pure type on white. No boxes. No borders.
+     * Gestalt: shared typeface + alignment = grouping.
+     * Fraunces italic at large scale — quotes as visual elements.
+     * Color: the quotation mark is yellow — only 10% accent.
+     */
+    .testimonials {
+      background: var(--white);
+      padding-block: var(--sp-8);
+    }
+
+    .testimonials-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--sp-8);
+      align-items: start;
+    }
+
+    @media (max-width: 700px) {
+      .testimonials-inner {
+        grid-template-columns: 1fr;
+        gap: var(--sp-6);
+      }
+    }
+
+    .quote-mark {
+      font-family: var(--font-display);
+      font-size: 6rem;
+      line-height: 0.6;
+      color: var(--yellow);
+      display: block;
+      margin-bottom: var(--sp-3);
+      /* Not decoration — punctuation carries meaning */
+    }
+
+    .quote-text {
+      font-family: var(--font-display);
+      font-size: clamp(1.35rem, 2.5vw, 1.75rem);
+      font-style: italic;
+      font-weight: 300;
+      line-height: 1.45;
+      color: var(--green-dk);
+      letter-spacing: -0.01em;
+      max-width: 28ch;
+      margin-bottom: var(--sp-4);
+    }
+
+    .quote-attr {
+      font-size: var(--text-sm);
+      font-weight: 700;
+      color: rgba(26,61,31,0.45);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    /* Separator between quotes — vertical rule uses contrast */
+    @media (min-width: 700px) {
+      .testimonials-inner {
+        position: relative;
+      }
+      .testimonials-inner::before {
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: 0;
+        bottom: 0;
+        width: 1px;
+        background: rgba(26,61,31,0.07);
+        transform: translateX(-50%);
+      }
+    }
+
+    /* ─── 5. PRE-ORDER STRIP ───────────────────────────────────── */
+    /*
+     * Full-width yellow. Color meaning: urgency + energy + freshness.
+     * Dark green text — maximum contrast on yellow (passes WCAG AA).
+     * Scarcity message + email input + button.
+     * This is the "climax" of the narrative arc.
+     */
+    .preorder {
+      background: var(--yellow);
+      padding: clamp(4rem, 8vw, 7rem) var(--gutter);
+      text-align: center;
+    }
+
+    .preorder-kicker {
+      font-size: var(--text-xs);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: rgba(26,61,31,0.5);
+      margin-bottom: var(--sp-3);
+    }
+
+    .preorder-headline {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 4vw, 2.75rem);
+      font-weight: 900;
+      line-height: 1.15;
+      color: var(--green-dk);
+      letter-spacing: -0.03em;
+      max-width: 28ch;
+      margin-inline: auto;
+      margin-bottom: var(--sp-3);
+    }
+
+    .preorder-sub {
+      font-size: var(--text-base);
+      color: rgba(26,61,31,0.6);
+      margin-bottom: var(--sp-6);
+      max-width: 42ch;
+      margin-inline: auto;
+    }
+
+    /* Email + button — single semantic row */
+    .preorder-form {
+      display: flex;
+      gap: var(--sp-2);
+      max-width: 480px;
+      margin-inline: auto;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .preorder-input {
+      flex: 1;
+      min-width: 200px;
+      padding: 0.85rem 1.25rem;
+      font-family: var(--font-body);
+      font-size: var(--text-base);
+      border: 2px solid rgba(26,61,31,0.2);
+      border-radius: 4px;
+      background: rgba(255,255,255,0.6);
+      color: var(--green-dk);
+      outline: none;
+      transition: border-color 0.2s var(--ease), background 0.2s var(--ease);
+    }
+
+    .preorder-input::placeholder {
+      color: rgba(26,61,31,0.4);
+    }
+
+    .preorder-input:focus {
+      border-color: var(--green-dk);
+      background: var(--white);
+    }
+
+    .preorder-form .btn-dark {
+      white-space: nowrap;
+      padding: 0.85rem 1.75rem;
+    }
+
+    .preorder-terms {
+      margin-top: var(--sp-3);
+      font-size: var(--text-xs);
+      color: rgba(26,61,31,0.45);
+    }
+
+    /* ─── 6. FOOTER ────────────────────────────────────────────── */
+    /*
+     * Dark green — closes the page with brand weight.
+     * Minimal: logo + 3 links + email.
+     * Nothing decorative. Lupton: "Every element should enable action."
+     */
+    .footer {
+      background: var(--green-dk);
+      padding: var(--sp-6) var(--gutter);
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: var(--sp-4);
+    }
+
+    .footer-brand {
+      font-family: var(--font-display);
+      font-size: var(--text-lg);
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    .footer-brand span {
+      display: block;
+      font-family: var(--font-body);
+      font-size: var(--text-xs);
+      font-weight: 400;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: var(--sp-5);
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      font-size: var(--text-sm);
+      color: rgba(255,255,255,0.55);
+      transition: color 0.2s var(--ease);
+      font-weight: 500;
+    }
+
+    .footer-links a:hover { color: var(--yellow); }
+
+    .footer-email {
+      font-size: var(--text-sm);
+      color: rgba(255,255,255,0.35);
+      transition: color 0.2s var(--ease);
+    }
+
+    .footer-email:hover { color: var(--white); }
+
+    .footer-bottom {
+      margin-top: var(--sp-4);
+      padding-top: var(--sp-4);
+      border-top: 1px solid rgba(255,255,255,0.07);
+      font-size: var(--text-xs);
+      color: rgba(255,255,255,0.2);
+      text-align: center;
+    }
+
+    /* ─── FOCUS STATES (a11y) ──────────────────────────────────── */
+    :focus-visible {
+      outline: 2px solid var(--yellow);
+      outline-offset: 3px;
+    }
+
+    /* ─── REDUCED MOTION ───────────────────────────────────────── */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition: none !important; animation: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     1. HERO — Full-bleed, Z-pattern composition
+     Z: Brand (TL) → Badge (TR) → Headline (BL) → CTA (BR)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<header class="hero">
+
+  <!-- Z entry: top-left brand mark -->
+  <nav class="hero-nav" aria-label="Glavna navigacija">
+    <div class="hero-brand">Jutro s kmetije</div>
+    <ul class="hero-nav-links" role="list">
+      <li><a href="#products">Produkti</a></li>
+      <li><a href="#testimonials">Mnenja</a></li>
+      <li><a href="#preorder">Naroči</a></li>
+    </ul>
+  </nav>
+
+  <!-- Z sweep: top-right badge interrupts scan -->
+  <div class="hero-badge" aria-label="Prostovoljno reje">Prosto reje · Ljubljana</div>
+
+  <!-- Z diagonal drop: headline at bottom-left -->
+  <div class="hero-body">
+    <p class="eyebrow" style="color: rgba(249,200,0,0.75);">Sveža jajca &amp; pridelki</p>
+
+    <h1 class="hero-headline">
+      Jutro<span class="dot">.</span>
+    </h1>
+
+    <p class="hero-subline">Sveža jajca. Ljubljana.</p>
+
+    <!-- Z terminus: CTA at bottom area -->
+    <div class="hero-actions">
+      <a href="#preorder" class="btn btn-yellow">Naroči zdaj →</a>
+      <a href="#products" class="btn btn-ghost">Oglej si produkte</a>
+    </div>
+  </div>
+
+  <div class="hero-scroll" aria-hidden="true">
+    <div class="hero-scroll-line"></div>
+    <span class="hero-scroll-label">Pomakniti navzdol</span>
+  </div>
+
+</header>
+
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     2. MANIFESTO — One line. Maximum breathing room.
+     Fraunces italic — type as primary design element.
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<section class="manifesto" aria-label="Naše načelo">
+  <p class="manifesto-line">
+    "Pobrano zjutraj. Pri tebi do kosila."
+  </p>
+</section>
+
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     3. PRODUCTS — F-pattern grid. Gestalt proximity.
+     3 cards: Jajca / Zelenjava / Piščanec.
+     Price visible. One CTA per card.
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<section class="products section" id="products">
+  <div class="container">
+
+    <header class="products-header">
+      <span class="eyebrow">Naši produkti</span>
+      <h2 class="products-title">Svežina, ki jo čutiš.</h2>
+      <p class="products-subtitle">Vse pridelano na naši kmetiji v okolici Ljubljane. Brez posrednikov. Brez kompromisov.</p>
+    </header>
+
+    <!-- F-pattern: eye reads top row left-to-right, then drops left -->
+    <div class="products-grid" role="list">
+
+      <!-- Card 1: Jajca — F top-left, primary product, highest visual weight -->
+      <article class="product-card" role="listitem">
+        <div class="product-img" aria-label="Fotografija jajc">
+          <!-- Inline SVG egg motif — semantic, zero-weight -->
+          <svg class="product-img-motif" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <ellipse class="icon-egg" cx="40" cy="44" rx="22" ry="28"/>
+          </svg>
+        </div>
+        <div class="product-body">
+          <span class="product-category">Jajca</span>
+          <h3 class="product-name">Sveža jajca<br>prostih kokoši</h3>
+          <p class="product-desc">Pobrana zjutraj. Kokoši živijo na prostem, hranijo se z zrnom in travo. Okus, ki ga ne najdete v trgovini.</p>
+          <div class="product-footer">
+            <div class="product-price">3,20 <sup>€ / 6 jajc</sup></div>
+            <a href="../preorder.html" class="product-cta" aria-label="Naroči jajca">
+              Naroči <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 2: Zelenjava — F top-right -->
+      <article class="product-card" role="listitem">
+        <div class="product-img" aria-label="Fotografija zelenjave" style="background: #1e4a22;">
+          <svg class="product-img-motif" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <!-- Leaf shape -->
+            <path class="icon-veg" d="M40 10 C60 10 70 30 70 50 C70 70 50 70 40 70 C30 70 10 70 10 50 C10 30 20 10 40 10 Z" opacity="0.9"/>
+            <line x1="40" y1="70" x2="40" y2="30" stroke="white" stroke-width="2" opacity="0.4"/>
+          </svg>
+        </div>
+        <div class="product-body">
+          <span class="product-category">Zelenjava</span>
+          <h3 class="product-name">Sezonska<br>zelenjava</h3>
+          <p class="product-desc">Paradižnik, solata, bučke, paprika — kar je ta teden na vrtu. Brez pesticidov. Brez voska. Ravno zemlja.</p>
+          <div class="product-footer">
+            <div class="product-price">od 2,50 <sup>€ / kg</sup></div>
+            <a href="../preorder.html" class="product-cta" aria-label="Naroči zelenjavo">
+              Naroči <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 3: Piščanec — F second row, left-aligned in F-pattern -->
+      <article class="product-card" role="listitem">
+        <div class="product-img" aria-label="Fotografija piščanca" style="background: #2d4a1f;">
+          <svg class="product-img-motif" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <!-- Simple bird silhouette -->
+            <ellipse class="icon-chicken" cx="38" cy="48" rx="18" ry="14"/>
+            <circle class="icon-chicken" cx="52" cy="32" r="10"/>
+            <path d="M58 28 L68 22 L65 30 Z" fill="white" opacity="0.8"/>
+          </svg>
+        </div>
+        <div class="product-body">
+          <span class="product-category">Perutnina</span>
+          <h3 class="product-name">Domači<br>piščanec</h3>
+          <p class="product-desc">Prosta reja, brez antibiotikov. Starejši od 90 dni. Naročiti je treba teden vnaprej — gre hitro.</p>
+          <div class="product-footer">
+            <div class="product-price">18,00 <sup>€ / kos</sup></div>
+            <a href="../preorder.html" class="product-cta" aria-label="Naroči piščanca">
+              Naroči <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     4. SOCIAL PROOF — Type on white. No boxes.
+     Fraunces italic at large scale = quotes as image.
+     Yellow quotation mark = 10% accent with purpose.
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<section class="testimonials section" id="testimonials" aria-label="Mnenja strank">
+  <div class="container">
+    <div class="testimonials-inner">
+
+      <blockquote>
+        <span class="quote-mark" aria-hidden="true">"</span>
+        <p class="quote-text">Odkar kupujemo jajca pri njih, se ne moremo več vrniti v trgovino. Razlika je ogromna.</p>
+        <cite class="quote-attr">Maja K. &mdash; Ljubljana</cite>
+      </blockquote>
+
+      <blockquote>
+        <span class="quote-mark" aria-hidden="true">"</span>
+        <p class="quote-text">Vsak teden naša kuhinja dobi košaro zelenjave. Sveže, lokalno, pošteno. Nič več iskanja po tržnicah.</p>
+        <cite class="quote-attr">Tomaž &amp; Ana R. &mdash; Brezovica</cite>
+      </blockquote>
+
+    </div>
+  </div>
+</section>
+
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     5. PRE-ORDER STRIP — Full-width yellow.
+     Yellow = peak energy, narrative climax.
+     Scarcity drives urgency. Dark green = max contrast.
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<section class="preorder" id="preorder" aria-label="Prednaročilo">
+  <p class="preorder-kicker">Omejeno število mest</p>
+  <h2 class="preorder-headline">Prvih 50 naročnikov dobi brezplačni obrok.</h2>
+  <p class="preorder-sub">Vpišite e-mail in rezervirajte svoje mesto. Brez obveznosti — samo svežina.</p>
+
+  <form class="preorder-form" action="#" method="post" novalidate>
+    <label for="preorder-email" class="visually-hidden">Vaš e-mail naslov</label>
+    <input
+      id="preorder-email"
+      name="email"
+      type="email"
+      class="preorder-input"
+      placeholder="vase.ime@email.com"
+      required
+      autocomplete="email"
+    >
+    <button type="submit" class="btn btn-dark">Rezerviraj &rarr;</button>
+  </form>
+
+  <p class="preorder-terms">Vaš e-mail ne bo posredovan tretjim osebam.</p>
+</section>
+
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     6. FOOTER — Dark green anchor. Logo + 3 links + email.
+     Nothing decorative. Every element enables an action.
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-inner">
+
+      <div class="footer-brand">
+        Jutro s kmetije
+        <span>Ljubljana, Slovenija</span>
+      </div>
+
+      <nav aria-label="Noga navigacija">
+        <ul class="footer-links" role="list">
+          <li><a href="../shop.html">Trgovina</a></li>
+          <li><a href="../preorder.html">Naroči</a></li>
+          <li><a href="../about.html">O nas</a></li>
+        </ul>
+      </nav>
+
+      <a href="mailto:info@jutroszkmetije.si" class="footer-email">info@jutroszkmetije.si</a>
+
+    </div>
+
+    <div class="footer-bottom">
+      &copy; 2025 Jutro s kmetije &nbsp;&middot;&nbsp; Vse pravice pridržane
+    </div>
+  </div>
+</footer>
+
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     Visually hidden utility (used for form label a11y)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<style>
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border: 0;
+  }
+</style>
+
+</body>
+</html>
